@@ -8,7 +8,7 @@ const count = ref(0)
 
 <template>
   <h1>{{ msg }}</h1>
-  <h2>Coming Soon...</h2>
+  <h2>Coming Soon....</h2>
 </template>
 
 <style scoped>
