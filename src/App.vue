@@ -1,12 +1,11 @@
 <script setup lang="ts">
-import HelloWorld from './components/HelloWorld.vue';
+import Header from './components/Header.vue';
+import Home from './views/Home.vue';
 </script>
 
 <template>
-  <div>
-    <img src="/next-play-logo.png" class="logo" alt="Next Play logo" />
-  </div>
-  <HelloWorld msg="Next Play" />
+  <Header />
+  <Home />
 </template>
 
 <style scoped>
