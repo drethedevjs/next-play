@@ -10,7 +10,7 @@ const headshotUrl = ref(headshot);
 <template>
   <div class="lg:flex lg:flex-row">
     <div class="mobile-image-pane">
-      <img :src="headshotUrl" class="object-cover h-full w-full" />
+      <img :src="headshotUrl" class="object-cover w-full" />
     </div>
     <div class="action-side">
       <h1><span>Dr.</span><br>Deverin Muff</h1>
@@ -29,15 +29,15 @@ const headshotUrl = ref(headshot);
 
 <style scoped>
   h1 {
-    @apply text-9xl uppercase font-bold;
+    @apply sm:text-9xl text-7xl uppercase font-bold;
   }
 
   h1 > span {
-    @apply text-5xl;
+    @apply sm:text-5xl text-3xl;
   }
 
   .action-side {
-    @apply p-10 lg:w-1/2 w-full;
+    @apply p-10 lg:w-1/2 w-full shrink;
   }
 
   .image-side {

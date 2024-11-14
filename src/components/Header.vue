@@ -12,7 +12,7 @@
 
 <style scoped>
   .logo {
-    @apply h-24;
+    @apply sm:h-24 h-10;
   }
 
   a {
