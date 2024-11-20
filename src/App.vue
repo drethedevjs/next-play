@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import Footer from './components/Footer.vue';
 import Header from './components/Header.vue';
 import Home from './views/Home.vue';
 </script>
@@ -6,6 +7,7 @@ import Home from './views/Home.vue';
 <template>
   <Header />
   <Home />
+  <Footer />
 </template>
 
 <style scoped>
