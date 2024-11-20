@@ -6,10 +6,12 @@ export default {
   ],
   theme: {
     extend: {
+      backgroundClip: {
+        text: 'text',
+      },
       colors: {
         black: "#212b36",
         dark: "#282828",
-        "dark-700": "#090e34b3",
         primary: "#e6c8a2",
         secondary: "#E07A5F",
         "body-color": "#090e34b3",
