@@ -18,10 +18,11 @@ function toggleMenu() {
       <a href="#">Books</a>
       <a href="#">Contact</a>
     </div>
-    <!-- Try doing this mobile menu using "absolute inset-y-0 left-0". This is
-     under the Placing a positioned element section of Tailwind -->
     <div class="mobile-nav-container">
       <HamburgerMenu :size="50" id="hamburger-menu" @click="toggleMenu" />
+      <div class="w-full">
+        <img src="/logo-blk-main.png" id="mobile-header-logo" alt="Next Play logo" />
+      </div>
       <div id="mobile-nav" v-show="isMenuOpen">
         <div class="flex flex-row mt-5">
           <img src="/logo-blk-main.png" class="mobile-logo" alt="Next Play logo" />
@@ -47,6 +48,10 @@ function toggleMenu() {
     @apply h-20 w-32;
   }
 
+  #mobile-header-logo {
+    @apply size-40 w-52 mx-auto;
+  }
+
   a {
     @apply ml-5 hover:text-secondary transition-colors;
   }
@@ -60,11 +65,11 @@ function toggleMenu() {
   }
 
   .mobile-nav-container {
-    @apply flex flex-row items-center p-10;
+    @apply flex flex-row items-center p-5;
   }
 
   #mobile-nav {
-    @apply bg-primary left-0 top-0 fixed w-3/4 h-full;
+    @apply bg-primary inset-y-0 left-0 fixed w-3/4 h-full;
 
     a {
       @apply border-b-2 border-b-dark py-5 text-3xl hover:text-white active:text-secondary;
