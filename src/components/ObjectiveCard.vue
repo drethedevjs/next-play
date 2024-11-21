@@ -8,10 +8,9 @@ const { specialty } = defineProps<{specialty:ISpecialty}>();
 <template>
   <div class="card">
     <component :is="specialty.hugeIcon" class="huge-icon" ></component>
-    <div>
-      <h1>{{ specialty.name }}</h1>
-      <p>{{ specialty.description}}</p>
-    </div>
+    <h1>{{ specialty.name }}</h1>
+    <p>{{ specialty.description}}</p>
+    <button class="btn">Learn More</button>
   </div>
 </template>
 
@@ -25,11 +24,15 @@ p {
 }
 
 .huge-icon {
-  @apply w-full h-52 text-dark;
+  @apply w-full h-40 text-dark;
 }
 
 .card {
   @apply shadow-md p-3 text-center rounded-lg border-2 border-primary;
+}
+
+.btn {
+  @apply bg-secondary hover:bg-transparent text-white hover:text-dark border-2 border-secondary transition-colors py-3 px-5 mb-3 rounded;
 }
 
 img {

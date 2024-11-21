@@ -5,6 +5,10 @@
 .np-container {
   @apply mt-8 container mx-auto text-center;
 }
+
+.pane-header {
+  @apply uppercase font-semibold mb-3 text-primary text-xl;
+}
 /* #app {
   max-width: 1280px;
   margin: 0 auto;
