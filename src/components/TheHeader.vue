@@ -18,6 +18,8 @@ function toggleMenu() {
       <a href="#">Books</a>
       <a href="#">Contact</a>
     </div>
+    <!-- Try doing this mobile menu using "absolute inset-y-0 left-0". This is
+     under the Placing a positioned element section of Tailwind -->
     <div class="mobile-nav-container">
       <HamburgerMenu :size="50" id="hamburger-menu" @click="toggleMenu" />
       <div id="mobile-nav" v-show="isMenuOpen">
