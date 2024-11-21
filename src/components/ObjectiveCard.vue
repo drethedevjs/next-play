@@ -29,7 +29,7 @@ p {
 }
 
 .card {
-  @apply shadow-md p-3 text-center rounded-lg;
+  @apply shadow-md p-3 text-center rounded-lg border-2 border-primary;
 }
 
 img {
