@@ -38,7 +38,7 @@ const headshotUrl = ref(headshot);
   }
 
   .action-side {
-    @apply p-10 lg:w-1/2 w-full shrink;
+    @apply p-10 lg:w-1/2 w-full shrink text-white bg-dark;
   }
 
   .image-side {
@@ -61,11 +61,11 @@ const headshotUrl = ref(headshot);
   }
 
   .book-me-btn {
-    @apply py-6 px-9 border-2 border-primary rounded-md bg-primary font-bold mr-5 hover:bg-white transition-colors;
+    @apply py-6 px-9 border-2 border-secondary rounded-md bg-secondary font-bold mr-5 hover:bg-dark transition-colors;
   }
 
   .subscribe-btn {
-    @apply py-6 px-9 border-2 border-primary rounded-md font-bold hover:bg-primary hover:text-white transition-colors;
+    @apply py-6 px-9 border-2 border-primary rounded-md font-bold hover:bg-primary hover:text-dark transition-colors;
   }
 
   .christmas {
