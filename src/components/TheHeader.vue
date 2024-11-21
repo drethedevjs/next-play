@@ -3,6 +3,10 @@ import { CancelCircleIcon, Menu01Icon as HamburgerMenu } from 'hugeicons-vue';
 import { ref } from 'vue';
 </script>
 <script lang="ts">
+import navLinks from '../data/navLinks';
+import INavLinks from '../interfaces/INavLinks';
+
+const headerLinks = ref<INavLinks[]>(navLinks)
 const isMenuOpen = ref(false);
 
 function toggleMenu() {
@@ -13,10 +17,9 @@ function toggleMenu() {
   <nav>
     <div class="nav-container">
       <img src="/logo-blk-main.png" class="logo" alt="Next Play logo" />
-      <a href="#">Home</a>
-      <a href="#">About</a>
-      <a href="#">Books</a>
-      <a href="#">Contact</a>
+      <template v-for="link in headerLinks">
+        <a v-if="link.isActive" :href="link.path">{{link.name}}</a>
+      </template>
     </div>
     <div class="mobile-nav-container">
       <HamburgerMenu :size="50" id="hamburger-menu" @click="toggleMenu" />
@@ -29,10 +32,7 @@ function toggleMenu() {
           <CancelCircleIcon class="absolute top-5 sm:right-16 right-5 size-8 hover:text-white" @click="toggleMenu" />
         </div>
         <div class="flex flex-col">
-          <a href="#">Home</a>
-          <a href="#">About</a>
-          <a href="#">Books</a>
-          <a href="#">Contact</a>
+          <a v-for="link in headerLinks" :href="link.path">{{link.name}}</a>
         </div>
       </div>
     </div>
