@@ -1,49 +1,42 @@
 import ISpecialty from "../interfaces/ISpecialty";
 // Importing HugeIcon components (replace with actual icon library imports if necessary)
-import { Agreement02Icon, Briefcase01Icon, Megaphone01Icon, PresentationLineChart02Icon, UserCircleIcon, UserGroupIcon } from 'hugeicons-vue';
+import { FileAttachmentIcon, LaptopIcon, Mic01Icon, UserCircleIcon, UserGroupIcon } from 'hugeicons-vue';
 
 const specialties: ISpecialty[] = [
   {
     id: 1,
     iconUrl: "/icons/personal-branding.svg",
-    name: "Personal Branding",
-    description: "Helping athletes build a personal brand that reflects their values and vision. This specialty focuses on defining and promoting an athlete’s identity off the field, making them marketable for future ventures in media, public speaking, and business.",
-    hugeIcon: UserCircleIcon // HugeIcon component for personal branding
+    name: "One-on-One Coaching",
+    description: "Our one-on-one coaching offers personalized guidance tailored to the unique needs of each individual. Whether you're an athlete, parent, or coach, we focus on helping you unlock your full potential. This dedicated support helps you overcome obstacles and achieve your personal goals.",
+    hugeIcon: UserCircleIcon // Huge Icon for personal branding
   },
   {
     id: 2,
     iconUrl: "/icons/business-strategy.svg",
-    name: "Business Strategy & Entrepreneurship",
-    description: "Supporting athletes in navigating the business world by providing insights into entrepreneurship, company formation, and scaling. Athletes often have a strong work ethic and the experience of high-level competition, which can be transformed into successful business ventures.",
-    hugeIcon: Briefcase01Icon // HugeIcon component for business strategy
+    name: "Group Workshops",
+    description: "Our group workshops provide an interactive platform for learning and growth. They are designed to foster collaboration, allowing participants to share ideas and experiences. These workshops are ideal for teams and organizations looking to enhance their skills and strategies together.",
+    hugeIcon: UserGroupIcon // Huge Icon for group collaboration
   },
   {
     id: 3,
     iconUrl: "/icons/financial-planning.svg",
-    name: "Financial Planning & Investment",
-    description: "Guiding athletes in managing their wealth, investments, and financial planning. This service helps athletes transition from a career of temporary earnings to building a long-lasting financial portfolio that will support them after sports.",
-    hugeIcon: PresentationLineChart02Icon // HugeIcon component for financial planning
+    name: "Online Courses",
+    description: "Our online courses offer flexibility, allowing you to learn at your own pace. Whether you want to gain new skills or enhance existing ones, these courses provide valuable resources and knowledge. Designed for busy schedules, they empower you to learn whenever and wherever suits you best.",
+    hugeIcon: LaptopIcon // Huge Icon for learning and online courses
   },
   {
     id: 4,
     iconUrl: "/icons/media-and-communications.svg",
-    name: "Media Relations & Communications",
-    description: "Helping athletes enhance their presence in the media and manage public relations. From interviews to social media engagement, we guide athletes in using their platforms for influence and impact while building professional relationships with the press.",
-    hugeIcon: Megaphone01Icon // HugeIcon component for media relations
+    name: "Digital Resources",
+    description: "Our digital resources provide practical tools to support your growth. From templates to guides, these resources are designed to help you implement new strategies effectively. They are accessible and easy to use, making them perfect for those who prefer learning through hands-on tools.",
+    hugeIcon: FileAttachmentIcon // Huge Icon for digital tools/resources
   },
   {
     id: 5,
     iconUrl: "/icons/social-impact.svg",
-    name: "Social Impact & Advocacy",
-    description: "Assisting athletes in using their platform to create social change. Many athletes have a unique opportunity to leverage their popularity to raise awareness for causes they are passionate about, whether it’s mental health, diversity, or environmental sustainability.",
-    hugeIcon: Agreement02Icon // HugeIcon component for social impact
-  },
-  {
-    id: 6,
-    iconUrl: "/icons/networking.svg",
-    name: "Networking & Industry Connections",
-    description: "Providing athletes with the tools and strategies to network with industry leaders and influencers. By connecting athletes to people in their field of interest, this specialty helps athletes find mentors, investors, and collaborators for a successful transition into new careers.",
-    hugeIcon: UserGroupIcon // HugeIcon component for networking and connections
+    name: "Speaking Engagements",
+    description: "Our speaking engagements offer inspiring talks aimed at educating and motivating audiences. These talks are designed to spark change and encourage positive action in both personal and professional life. With a focus on social impact, they inspire listeners to take meaningful steps toward growth and success.",
+    hugeIcon: Mic01Icon // Huge Icon for speaking engagements
   }
 ];
 
