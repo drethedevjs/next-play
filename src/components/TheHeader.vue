@@ -31,9 +31,11 @@ function toggleMenu() {
           <img src="/logo-blk-main.png" class="mobile-logo" alt="Next Play logo" />
           <CancelCircleIcon class="absolute top-5 sm:right-16 right-5 size-8 hover:text-white" @click="toggleMenu" />
         </div>
-        <div class="flex flex-col">
-          <a v-for="link in headerLinks" :href="link.path">{{link.name}}</a>
-        </div>
+        <template v-for="link in headerLinks">
+          <div class="flex flex-col">
+            <a v-if="link.isActive" :href="link.path">{{link.name}}</a>
+          </div>
+        </template>
       </div>
     </div>
   </nav>
