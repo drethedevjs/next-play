@@ -9,9 +9,6 @@ const logoUrl = ref(logo);
 
 <template>
   <div class="lg:flex lg:flex-row text-dark">
-    <div class="mobile-image-pane">
-      <img :src="logoUrl" class="object-cover w-full" />
-    </div>
     <div class="action-side">
       <h1><span class="the-text">The</span><br><span class="next-play-text">Next Play</span> Project</h1>
       <p class="tag-line">Coaching. Workshops. Resources.</p>
