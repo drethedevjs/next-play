@@ -19,7 +19,7 @@ const logoUrl = ref(logo);
       </div>
     </div>
     <div class="image-side relative">
-      <img :src="logoUrl" class="object-cover h-full w-full hover:scale-105 hover:rotate-2 transition-transform" />
+      <img :src="logoUrl" class="hero-logo" />
       <div class="absolute bottom-0 left-0 w-full h-1/3 bg-gradient-to-b from-transparent to-white"></div>
     </div>
   </div>
@@ -35,15 +35,15 @@ const logoUrl = ref(logo);
   }
 
   .next-play-text {
-    @apply text-transparent bg-clip-text bg-gradient-to-r from-white to-secondary;
+    @apply text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary;
   }
 
   .action-side {
-    @apply p-10 lg:w-1/2 w-full shrink text-white bg-dark;
+    @apply p-10 lg:w-1/2 w-full text-dark text-right;
   }
 
   .image-side {
-    @apply lg:w-1/2 w-full hidden lg:block;
+    @apply xl:w-1/2 w-full hidden lg:block;
   }
 
   .mobile-image-pane {
@@ -63,12 +63,14 @@ const logoUrl = ref(logo);
   }
 
   .book-me-btn {
-    @apply py-6 px-9 border-2 border-secondary rounded-md bg-secondary font-bold mr-5 hover:bg-dark transition-colors;
+    @apply py-6 px-9 border-2 border-secondary rounded-md bg-secondary font-bold text-white mr-5 hover:text-dark hover:bg-white transition-colors;
   }
 
   .subscribe-btn {
     @apply py-6 px-9 border-2 border-primary rounded-md font-bold hover:bg-primary hover:text-dark transition-colors;
   }
 
-  
+  .hero-logo {
+    @apply xl:object-cover xl:h-full xl:scale-100 xl:mt-0 scale-150 mt-20 w-full hover:scale-105 hover:xl:rotate-1 xl:rotate-3 hover:rotate-45 rotate-90 transition-transform;
+  }
 </style>
