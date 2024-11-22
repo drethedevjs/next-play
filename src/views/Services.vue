@@ -1,4 +1,5 @@
 <script lang="ts">
+import { Idea01Icon, UserCircleIcon } from 'hugeicons-vue';
 import { Ref, ref } from 'vue';
 import Service from '../components/Service.vue';
 import serviceData from '../data/services';
@@ -6,7 +7,8 @@ import IService from '../interfaces/IService';
 
 export default {
   components: {
-    Service
+    Service,
+    Idea01Icon
   },
   setup() {
     const services = ref<IService[]>(serviceData);
@@ -20,6 +22,7 @@ export default {
         "Identify transferable skills for life beyond athletics.",
         "Receive actionable strategies tailored to your goals."
       ],
+      highlightHeading: "Ideal For",
       highlights: [
         "Athletes feeling stuck or uncertain about their future.",
         "Parents seeking to support their child's development.",
@@ -27,7 +30,9 @@ export default {
       ],
       duration: ["60-minute sessions"],
       formats: [],
-      callToActionText: "Book a Free Discovery Call"
+      callToActionText: "Book a Free Discovery Call",
+      pricing: "Starting at [Insert Price] per session",
+      hugeIcon: UserCircleIcon
     }
 
     let selectedService: Ref<IService> = ref(services.value.find(s => s.id === 1) || defaultService);
@@ -40,10 +45,13 @@ export default {
         selectedService.value = services.value[0];
     }
 
+    const updateButtonServiceClass = (serviceId: number) => selectedService.value.id === serviceId ? "bg-secondary text-white" : "";
+
     return {
       selectService,
       selectedService,
-      services
+      services,
+      updateButtonServiceClass
     }
   },
 }
@@ -51,21 +59,78 @@ export default {
 <template>
   <div class="page-container">
     <h1>Services</h1>
-    <p>
+    <p id="header-message">
       At the <span class="text-secondary">Next Play Project</span>, we provide tailored solutions to help athletes, 
       parents, and coaches navigate the challenges of athletic identity. Whether 
       you're looking for one-on-one guidance, group workshops, or online resources, 
       our services are designed to support you every step of the way.
     </p>
     <div class="btn-group">
-        <button class="service-btn" v-for="service in services" @click="() => selectService(service.id)">{{ service.name }}</button>
+        <button
+          class="service-btn"
+          :class="updateButtonServiceClass(service.id)"
+          v-for="service in services"
+          @click="() => selectService(service.id)"
+        >
+        <div class="flex gap-2 place-content-center">
+          <component :is="service.hugeIcon" class="service-btn-icon"></component>
+          {{ service.name }}
+        </div>
+        </button>
     </div>
-    <Service>
-      <template #heading>
-        <h2>{{ selectedService.name }}</h2>
-        <h3>{{ selectedService.tagLine }}</h3>
-      </template>
-    </Service>
+    <div class="p-10 xl:mx-52">
+      <Service
+        :highlightHeading="selectedService.highlightHeading"
+        :hasFormats="!!selectedService.formats.length"
+        :hasDurations="!!selectedService.duration.length"
+        :callToActionBtnTxt="selectedService.callToActionText"
+      >
+        <template #heading>
+          <h2>{{ selectedService.name }}</h2>
+          <h3>{{ selectedService.tagLine }}</h3>
+        </template>
+        <template #offerings>
+          <ul>
+            <li v-for="offering in selectedService.offerings">
+              {{ offering }}
+            </li>
+          </ul>
+        </template>
+        <template #highlightHeading>
+          <div class="flex flex-row gap-3">
+            <Idea01Icon />
+            <h4>Topics Include</h4>
+          </div>
+        </template>
+        <template #highlights>
+          <ul>
+            <li v-for="highlight in selectedService.highlights">
+              {{ highlight }}
+            </li>
+          </ul>
+        </template>
+
+        <template #format>
+          <ul>
+            <li v-for="format in selectedService.formats">
+              {{ format }}
+            </li>
+          </ul>
+        </template>
+
+        <template #duration>
+          <ul>
+            <li class="ml-5 text-xl" v-for="duration in selectedService.duration">
+              {{ duration }}
+            </li>
+          </ul>
+        </template>
+
+        <template #pricing>
+          <p class="ml-5 text-xl">{{ selectedService.pricing }}</p>
+        </template>
+      </Service>
+    </div>
   </div>
 </template>
 
@@ -75,15 +140,27 @@ h1 {
 }
 
 h2 {
-  @apply p-5 text-3xl
+  @apply text-3xl pb-4 font-semibold uppercase;
 }
 
 h3 {
-  @apply pl-5 pb-10 text-xl
+  @apply pb-10 text-xl text-secondary;
 }
 
-p {
+h4 {
+  @apply text-2xl uppercase font-semibold mb-4;
+}
+
+#header-message {
   @apply w-3/4 mx-auto text-center sm:text-3xl text-xl;
+}
+
+ul {
+  @apply mb-5;
+}
+
+li {
+  @apply text-xl list-disc ml-10;
 }
 
 .page-container {
@@ -91,10 +168,16 @@ p {
 }
 
 .service-btn {
-  @apply py-3 hover:bg-dark text-dark hover:text-white transition-colors grow text-2xl border-b-2 border-b-dark;
+  @apply py-3 hover:bg-dark hover:text-white transition-colors grow text-2xl border-b-2 border-b-dark;
 }
 
 .btn-group {
   @apply sm:mt-16 mt-10 xl:flex-row flex flex-col;
+}
+
+@media (max-width: 1280px) {
+  .service-btn-icon {
+    @apply hidden;
+  }
 }
 </style>

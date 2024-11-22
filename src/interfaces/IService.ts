@@ -1,3 +1,6 @@
+import { HugeiconsProps } from "hugeicons-vue/types";
+import { FunctionalComponent } from "vue";
+
 export default interface IService {
   id: number;
   name: string;
@@ -7,4 +10,7 @@ export default interface IService {
   callToActionText: string;
   highlights: string[];
   duration: string[];
+  highlightHeading: string;
+  pricing: string;
+  hugeIcon: FunctionalComponent<HugeiconsProps, {}, any, {}>
 }
