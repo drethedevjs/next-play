@@ -1,6 +1,7 @@
 <script lang="ts">
 import { Idea01Icon, UserCircleIcon } from 'hugeicons-vue';
-import { Ref, ref } from 'vue';
+import { Ref, ref, watch } from 'vue';
+import { useRoute, useRouter } from 'vue-router';
 import Service from '../components/Service.vue';
 import serviceData from '../data/services';
 import IService from '../interfaces/IService';
@@ -10,8 +11,14 @@ export default {
     Service,
     Idea01Icon
   },
+  mounted() {
+    const searchParams = new URLSearchParams(this.$route.query as Record<string, string>);
+    if (searchParams.has("id")) {
+      let id = searchParams.get("id");
+      this.selectedService = this.services.find(s => s.id === Number(id)) || this.defaultService;
+    }
+  },
   setup() {
-    const services = ref<IService[]>(serviceData);
     const defaultService = {
       id: 1,  // Unique numeric ID for this service
       name: "One-on-One Coaching",
@@ -34,13 +41,26 @@ export default {
       pricing: "Starting at [Insert Price] per session",
       hugeIcon: UserCircleIcon
     }
-
+    const router = useRouter();
+    const route = useRoute();
+    const services = ref<IService[]>(serviceData);
     let selectedService: Ref<IService> = ref(services.value.find(s => s.id === 1) || defaultService);
+
+    watch(
+      () => route.query.id,
+      (newId) => {
+        if (newId) {
+          selectedService.value = services.value.find(s => s.id === Number(newId)) || defaultService;
+        }
+      }
+    );
 
     const selectService = (serviceId: number) => {
       let element = services.value.find(s => s.id === serviceId);
-      if (element)
+      if (element) {
         selectedService.value = element;
+        router.push(`/services?id=${selectedService.value.id}`);
+      }
       else
         selectedService.value = services.value[0];
     }
@@ -51,7 +71,8 @@ export default {
       selectService,
       selectedService,
       services,
-      updateButtonServiceClass
+      updateButtonServiceClass,
+      defaultService
     }
   },
 }
