@@ -60,7 +60,9 @@ const headshotUrl = ref(headshot);
         </p>
       </section>
       <section>
-        <button class="get-start-btn">Get Started</button>
+        <a href="/services">
+          <button class="get-start-btn">Get Started</button>
+        </a>
       </section>
     </div>
   </div>
