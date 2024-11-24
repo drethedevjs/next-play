@@ -9,7 +9,7 @@ const navLinks: INavLinks[] = [
   {
     name: "About",
     path: "/about",
-    isActive: false
+    isActive: true
   },
   {
     name: "Services",

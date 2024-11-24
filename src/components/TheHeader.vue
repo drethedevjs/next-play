@@ -22,9 +22,11 @@ function toggleMenu() {
       </template>
     </div>
     <div class="mobile-nav-container">
-      <HamburgerMenu :size="50" id="hamburger-menu" @click="toggleMenu" />
+      <HamburgerMenu :size="70" id="hamburger-menu" @click="toggleMenu" />
       <div class="w-full">
-        <img src="/logo-blk-main.png" id="mobile-header-logo" alt="Next Play logo" />
+        <a href="/">
+          <img src="/logo-blk-main.png" id="mobile-header-logo" alt="Next Play logo" />
+        </a>
       </div>
       <div id="mobile-nav" v-show="isMenuOpen">
         <div class="flex flex-row mt-5">
@@ -71,7 +73,7 @@ function toggleMenu() {
   }
 
   #mobile-nav {
-    @apply bg-primary inset-y-0 left-0 fixed w-3/4 h-full;
+    @apply bg-primary inset-y-0 left-0 fixed w-3/4 h-full z-10;
 
     a {
       @apply border-b-2 border-b-dark py-5 text-3xl hover:text-white active:text-secondary;
