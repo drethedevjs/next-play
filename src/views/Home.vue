@@ -18,7 +18,7 @@ import Specialties from '../components/Specialties.vue';
       </p>
     </template>
     <template #action>
-      <button class="btn ready-btn">Book You Free Discovery Call</button>
+      <button class="btn ready-btn disabled:cursor-not-allowed" disabled>Book You Free Discovery Call</button>
     </template>
   </CallToAction>
 
@@ -32,8 +32,8 @@ import Specialties from '../components/Specialties.vue';
       </p>
     </template>
     <template #action>
-      <button class="btn action-btn mr-3">FAQ</button>
-      <button class="btn action-btn">Contact Us</button>
+      <button class="btn action-btn mr-3 disabled:cursor-not-allowed" disabled>FAQ</button>
+      <button class="btn action-btn disabled:cursor-not-allowed" disabled>Contact Us</button>
     </template>
   </CallToAction>
 </template>

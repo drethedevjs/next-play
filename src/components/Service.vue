@@ -35,7 +35,7 @@ const { highlightHeading, hasFormats, hasDurations, callToActionBtnTxt } = defin
     Contact us for pricing.
   </slot>
 
-  <button>{{ callToActionBtnTxt }}</button>
+  <button class="disabled:cursor-not-allowed" disabled>{{ callToActionBtnTxt }}</button>
 </template>
 
 <style scoped>

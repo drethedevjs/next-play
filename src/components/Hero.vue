@@ -14,8 +14,8 @@ const logoUrl = ref(logo);
       <p class="tag-line">Coaching. Workshops. Resources.</p>
       <p class="mission-line">We exist to help athletes find their the <span class="text-secondary">next play</span> during their life after sports.</p>
       <div class="action-btns">
-        <button class="book-me-btn">Book Speaker</button>
-        <button class="subscribe-btn">Subscribe to Newsletter</button>
+        <button class="book-speaker-btn disabled:cursor-not-allowed" disabled>Book Speaker</button>
+        <button class="subscribe-btn disabled:cursor-not-allowed" disabled>Subscribe to Newsletter</button>
       </div>
     </div>
     <div class="image-side relative">
@@ -62,12 +62,12 @@ const logoUrl = ref(logo);
     @apply flex flex-row mt-6;
   }
 
-  .book-me-btn {
-    @apply py-6 px-9 border-2 border-secondary rounded-md bg-secondary font-bold text-white mr-5 hover:text-dark hover:bg-white transition-colors;
+  .book-speaker-btn {
+    @apply sm:py-6 sm:px-9 py-3 border-2 text-base border-secondary rounded-md bg-secondary font-bold text-white mr-5 hover:text-dark hover:bg-white transition-colors;
   }
 
   .subscribe-btn {
-    @apply py-6 px-9 border-2 border-primary rounded-md font-bold hover:bg-primary hover:text-dark transition-colors;
+    @apply sm:py-6 sm:px-9 py-3 border-2 border-primary rounded-md font-bold hover:bg-primary hover:text-dark transition-colors;
   }
 
   .hero-logo {
