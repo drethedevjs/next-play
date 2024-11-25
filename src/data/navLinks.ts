@@ -29,7 +29,7 @@ const navLinks: INavLinks[] = [
   {
     name: "FAQ",
     path: "/faq",
-    isActive: false
+    isActive: true
   }
 ]
 
