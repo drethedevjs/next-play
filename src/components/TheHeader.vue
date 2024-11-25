@@ -1,13 +1,18 @@
 <script lang="ts" setup>
 import { CancelCircleIcon, Menu01Icon as HamburgerMenu } from 'hugeicons-vue';
 import { ref } from 'vue';
-</script>
-<script lang="ts">
+import { useRouter } from 'vue-router';
 import navLinks from '../data/navLinks';
 import INavLinks from '../interfaces/INavLinks';
 
 const headerLinks = ref<INavLinks[]>(navLinks)
 const isMenuOpen = ref(false);
+
+const router = useRouter();
+function navigate(to: string) {
+  toggleMenu();
+  router.push(to);
+}
 
 function toggleMenu() {
   isMenuOpen.value = !isMenuOpen.value;
@@ -17,9 +22,15 @@ function toggleMenu() {
   <nav>
     <div class="nav-container">
       <img src="/logo-blk-main.png" class="logo" alt="Next Play logo" />
-      <template v-for="link in headerLinks">
-        <a v-if="link.isActive" :href="link.path">{{link.name}}</a>
-      </template>
+      <ul class="flex flex-row">
+          <template v-for="link in headerLinks">
+            <li v-if="link.isActive">
+              <router-link :to="link.path">
+                {{link.name}}
+              </router-link>
+            </li>
+          </template>
+        </ul>
     </div>
     <div class="mobile-nav-container">
       <HamburgerMenu :size="70" id="hamburger-menu" @click="toggleMenu" />
@@ -33,11 +44,13 @@ function toggleMenu() {
           <img src="/logo-blk-main.png" class="mobile-logo" alt="Next Play logo" />
           <CancelCircleIcon class="absolute top-5 sm:right-16 right-5 size-8 hover:text-white" @click="toggleMenu" />
         </div>
-        <template v-for="link in headerLinks">
-          <div class="flex flex-col">
-            <a v-if="link.isActive" :href="link.path">{{link.name}}</a>
-          </div>
-        </template>
+        <ul>
+            <template v-for="link in headerLinks">
+              <li v-if="link.isActive" @click="navigate(link.path)">
+                {{link.name}}
+              </li>
+            </template>
+          </ul>
       </div>
     </div>
   </nav>
@@ -56,7 +69,7 @@ function toggleMenu() {
     @apply size-40 w-52 mx-auto;
   }
 
-  a {
+  li {
     @apply ml-5 hover:text-secondary transition-colors;
   }
 
@@ -75,7 +88,7 @@ function toggleMenu() {
   #mobile-nav {
     @apply bg-primary inset-y-0 left-0 fixed w-3/4 h-full z-10;
 
-    a {
+    li {
       @apply border-b-2 border-b-dark py-5 text-3xl hover:text-white active:text-secondary;
     }
   }

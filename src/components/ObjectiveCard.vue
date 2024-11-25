@@ -10,7 +10,9 @@ const { specialty } = defineProps<{specialty:ISpecialty}>();
     <component :is="specialty.hugeIcon" class="huge-icon" ></component>
     <h1>{{ specialty.name }}</h1>
     <p>{{ specialty.description}}</p>
-    <a class="btn inline-block" :href="`/services?id=${specialty.id}`">Learn More</a>
+    <router-link :to="`/services?id=${specialty.id}`">
+      <button class="btn">Learn More</button>
+    </router-link>
   </div>
 </template>
 

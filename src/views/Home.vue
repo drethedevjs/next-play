@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { RouterLink } from 'vue-router';
 import CallToAction from '../components/CallToAction.vue';
 import Hero from '../components/Hero.vue';
 import Specialties from '../components/Specialties.vue';
@@ -32,7 +33,9 @@ import Specialties from '../components/Specialties.vue';
       </p>
     </template>
     <template #action>
-      <button class="btn action-btn mr-3 disabled:cursor-not-allowed" disabled>FAQ</button>
+      <router-link to="/faq">
+        <button class="btn action-btn mr-3">FAQ</button>
+      </router-link>
       <button class="btn action-btn disabled:cursor-not-allowed" disabled>Contact Us</button>
     </template>
   </CallToAction>
