@@ -65,7 +65,7 @@ const logoUrl = ref(logo);
   }
 
   .btn {
-    @apply sm:py-6 sm:px-9 py-3 px-3 border-2 rounded-md font-bold text-xl;
+    @apply sm:py-6 sm:px-9 py-3 px-3 border-2 rounded-md font-bold md:text-xl;
   }
 
   .book-speaker-btn {

@@ -19,7 +19,7 @@ import Specialties from '../components/Specialties.vue';
       </p>
     </template>
     <template #action>
-      <button class="btn ready-btn disabled:cursor-not-allowed" disabled>Book You Free Discovery Call</button>
+      <button class="btn ready-btn disabled:cursor-not-allowed" disabled>Book Your Free Discovery Call</button>
     </template>
   </CallToAction>
 
@@ -36,7 +36,9 @@ import Specialties from '../components/Specialties.vue';
       <router-link to="/faq">
         <button class="btn action-btn mr-3">FAQ</button>
       </router-link>
-      <button class="btn action-btn disabled:cursor-not-allowed" disabled>Contact Us</button>
+      <router-link to="/contact">
+        <button class="btn action-btn">Contact Us</button>
+      </router-link>
     </template>
   </CallToAction>
 </template>
@@ -47,7 +49,7 @@ import Specialties from '../components/Specialties.vue';
   }
 
   .btn {
-    @apply transition-colors sm:py-3 sm:px-5 sm:text-base py-5 px-7 text-3xl mb-3 rounded font-bold hover:bg-transparent;
+    @apply transition-colors sm:py-5 sm:px-10 text-xl py-5 px-7 sm:text-2xl mb-3 rounded font-bold hover:bg-transparent;
   }
 
   .ready-btn {
