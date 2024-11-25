@@ -1,67 +1,91 @@
-<script lang="ts" setup>
-import { ref } from 'vue';
+<script lang="ts">
+import { reactive, ref } from 'vue';
+import ContactFormData from '../classes/ContactFormData';
 import Sport from '../classes/Sports';
 import servicesData from '../data/services';
 import IService from '../interfaces/IService';
 
 const services = ref<IService[]>(servicesData);
-
 const sports = Object.values(Sport) as string[];
+
+export default {
+  setup() {
+    let formData = reactive<ContactFormData>(new ContactFormData());
+
+    const resetForm = () => { formData.clear(); };
+
+    const submitForm = () => {
+      console.dir({...formData});
+      alert("submitted!");
+      resetForm();
+      window.scrollTo({top: 0, behavior: "smooth"});
+    }
+
+    return {
+      formData,
+      services,
+      sports,
+      submitForm,
+      resetForm
+    }
+  }
+}
 </script>
+
 <template>
   <section>
     <div class="container mx-auto xl:px-52 px-5">
       <h1>Contact</h1>
-      <form>
+      <form @submit.prevent="submitForm">
         <div class="space-y-12">
           <div class="border-b border-gray-900/10 pb-12">
             <div class="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
               <div class="md:col-span-3 sm:col-span-full">
                 <label for="first-name">First name</label>
                 <div class="mt-2">
-                  <input type="text" name="first-name" id="first-name" autocomplete="given-name" />
+                  <input type="text" name="first-name" id="first-name" autocomplete="given-name" v-model.lazy.trim="formData.firstName" />
                 </div>
               </div>
 
               <div class="md:col-span-3 sm:col-span-full">
                 <label for="last-name">Last name</label>
                 <div class="mt-2">
-                  <input type="text" name="last-name" id="last-name" autocomplete="family-name" />
+                  <input type="text" name="last-name" id="last-name" autocomplete="family-name" v-model.lazy="formData.lastName" />
                 </div>
               </div>
 
               <div class="col-span-full">
                 <label for="email">Email address</label>
                 <div class="mt-2">
-                  <input id="email" name="email" type="email" autocomplete="email" />
+                  <input id="email" name="email" type="email" autocomplete="email" v-model.lazy.trim="formData.email" />
                 </div>
               </div>
 
               <div class="col-span-full">
                 <label for="message">Message</label>
                 <div class="mt-2">
-                  <textarea id="message" name="message"></textarea>
+                  <textarea id="message" name="message" v-model.lazy.trim="formData.message"></textarea>
                 </div>
               </div>
 
               <div class="lg:col-span-3 lg:col-start-1 col-span-full">
                 <label for="city">City</label>
                 <div class="mt-2">
-                  <input type="text" name="city" id="city" autocomplete="city" />
+                  <input type="text" name="city" id="city" autocomplete="city" v-model.lazy.trim="formData.city" />
                 </div>
               </div>
 
               <div class="lg:col-span-2 col-span-full">
                 <label for="region">State / Province</label>
                 <div class="mt-2">
-                  <input type="text" name="region" id="region" />
+                  <input type="text" name="region" id="region" v-model.lazy.trim="formData.region" />
                 </div>
               </div>
 
               <div class="lg:col-span-1 col-span-full">
                 <label for="postal-code">Postal code</label>
                 <div class="mt-2">
-                  <input type="text" name="postal-code" id="postal-code" autocomplete="postal-code" />
+                  <input type="text" name="postal-code" id="postal-code" autocomplete="postal-code" v-model.lazy.trim="formData.postalCode" />
                 </div>
               </div>
 
@@ -71,7 +95,7 @@ const sports = Object.values(Sport) as string[];
                   <small>What service(s) are you interested in?</small>
                   <div class="flex mt-2" v-for="service in services" :key="service.id">
                     <label class="flex items-center">
-                      <input type="checkbox" :id="service.name" :name="service.name" />
+                      <input type="checkbox" :id="service.name" :name="service.name" :value="service.name" class="service" v-model="formData.services" />
                       {{ service.name }}
                     </label>
                   </div>
@@ -83,7 +107,7 @@ const sports = Object.values(Sport) as string[];
                   <small>What organized sports have you played?</small>
                   <div class="grid xl:grid-cols-3 sm:grid-cols-2 mt-2">
                     <label class="flex items-center sm:mb-0 mb-1" v-for="sport in sports" :key="sport">
-                      <input type="checkbox" :id="sport" :name="sport" />
+                      <input type="checkbox" :id="sport" :name="sport" :value="sport" class="sport" v-model="formData.sports" />
                       {{ sport }}
                     </label>
                   </div>
