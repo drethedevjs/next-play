@@ -19,8 +19,11 @@ const router = createRouter({
     { path: "/books", component: Books },
     { path: "/faq", component: FAQ }
   ],
-  scrollBehavior() {
-    return { top: 0, behavior: "smooth" }
+  scrollBehavior(to, from) {
+    if (to.path === from.path)
+      return {};
+
+    return { top: 0, behavior: "smooth" };
   }
 });
 
