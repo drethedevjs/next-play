@@ -8,6 +8,7 @@ import Contact from './views/Contact.vue';
 import FAQ from './views/FAQ.vue';
 import Home from './views/Home.vue';
 import Services from './views/Services.vue';
+import Subscribe from './views/Subscribe.vue';
 
 const router = createRouter({
   history: createWebHistory(),
@@ -17,7 +18,8 @@ const router = createRouter({
     { path: "/contact", component: Contact },
     { path: "/services", component: Services },
     { path: "/books", component: Books },
-    { path: "/faq", component: FAQ }
+    { path: "/faq", component: FAQ },
+    { path: "/subscribe", component: Subscribe }
   ],
   scrollBehavior(to, from) {
     if (to.path === from.path)

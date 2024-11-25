@@ -17,7 +17,9 @@ const logoUrl = ref(logo);
       </p>
       <div class="action-btns">
         <button class="book-speaker-btn btn disabled:cursor-not-allowed" disabled>Book Speaker</button>
-        <a class="subscribe-btn btn" href="https://deverinmuff.substack.com" target="_blank">Subscribe to Newsletter</a>
+        <router-link to="/subscribe">
+          <button class="subscribe-btn btn">Subscribe to Newsletter</button>
+        </router-link>
       </div>
     </div>
     <div class="image-side relative">
