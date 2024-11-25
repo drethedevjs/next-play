@@ -1,8 +1,6 @@
 <script lang="ts" setup>
-import { defineProps } from "vue";
 import ISpecialty from '../interfaces/ISpecialty';
 const { specialty } = defineProps<{specialty:ISpecialty}>();
-
 </script>
 
 <template>

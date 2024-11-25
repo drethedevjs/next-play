@@ -35,9 +35,9 @@ function toggleMenu() {
     <div class="mobile-nav-container">
       <HamburgerMenu :size="70" id="hamburger-menu" @click="toggleMenu" />
       <div class="w-full">
-        <a href="/">
+        <router-link to="/">
           <img src="/logo-blk-main.png" id="mobile-header-logo" alt="Next Play logo" />
-        </a>
+        </router-link>
       </div>
       <div id="mobile-nav" v-show="isMenuOpen">
         <div class="flex flex-row mt-5">

@@ -30,9 +30,9 @@ const headshotUrl = ref(headshot);
         </p>
         <p>
           With a doctorate in sports management and years of research focused on athletic identity, 
-          personality, and transitions, I’ve created a unique coaching framework to help athletes at 
-          every stage of their journey. Whether you’re an athlete trying to balance sport and life, a 
-          parent supporting your child’s dreams, or a coach shaping future stars, I provide tools, 
+          personality, and transitions, I've created a unique coaching framework to help athletes at 
+          every stage of their journey. Whether you're an athlete trying to balance sport and life, a 
+          parent supporting your child's dreams, or a coach shaping future stars, I provide tools, 
           strategies, and support to build well-rounded, purpose-driven individuals.
         </p>
     </section>
@@ -44,13 +44,13 @@ const headshotUrl = ref(headshot);
           they need to thrive in every aspect of their lives—not just in sports.
         </p>
         <p>
-          Through personalized coaching, workshops, and online resources, I’ll guide you or your athlete to:
+          Through personalized coaching, workshops, and online resources, I'll guide you or your athlete to:
+        </p>
           <ul class="list-disc">
             <li>Navigate the challenges of identity foreclosure.</li>
             <li>Identify and develop transferable skills for life after sports.</li>
             <li>Build a balanced, fulfilling life that integrates purpose with performance.</li>
           </ul>
-        </p>
     </section>
     <section>
         <h2>Let's Work Together</h2>
@@ -60,9 +60,9 @@ const headshotUrl = ref(headshot);
         </p>
       </section>
       <section>
-        <a href="/services">
+        <router-link to="/services">
           <button class="get-start-btn">Get Started</button>
-        </a>
+        </router-link>
       </section>
     </div>
   </div>
