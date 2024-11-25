@@ -12,10 +12,12 @@ const logoUrl = ref(logo);
     <div class="action-side">
       <h1><span class="the-text">The</span><br><span class="next-play-text">Next Play</span> Project</h1>
       <p class="tag-line">Coaching. Workshops. Resources.</p>
-      <p class="mission-line">We exist to help athletes find their the <span class="text-secondary">next play</span> during their life after sports.</p>
+      <p class="mission-line">
+        We exist to help athletes find their the <span class="text-secondary">next play</span> during their life after sports.
+      </p>
       <div class="action-btns">
-        <button class="book-speaker-btn disabled:cursor-not-allowed" disabled>Book Speaker</button>
-        <button class="subscribe-btn disabled:cursor-not-allowed" disabled>Subscribe to Newsletter</button>
+        <button class="book-speaker-btn btn disabled:cursor-not-allowed" disabled>Book Speaker</button>
+        <button class="subscribe-btn btn disabled:cursor-not-allowed" disabled>Subscribe to Newsletter</button>
       </div>
     </div>
     <div class="image-side relative">
@@ -59,15 +61,19 @@ const logoUrl = ref(logo);
   }
 
   .action-btns {
-    @apply flex flex-row mt-6;
+    @apply flex flex-row mt-6 place-content-end;
+  }
+
+  .btn {
+    @apply sm:py-6 sm:px-9 py-3 px-3 border-2 rounded-md font-bold text-xl;
   }
 
   .book-speaker-btn {
-    @apply sm:py-6 sm:px-9 py-3 border-2 text-base border-secondary rounded-md bg-secondary font-bold text-white mr-5 hover:text-dark hover:bg-white transition-colors;
+    @apply border-secondary bg-secondary text-white mr-5 hover:text-dark hover:bg-white transition-colors;
   }
 
   .subscribe-btn {
-    @apply sm:py-6 sm:px-9 py-3 border-2 border-primary rounded-md font-bold hover:bg-primary hover:text-dark transition-colors;
+    @apply border-primary hover:bg-primary transition-colors;
   }
 
   .hero-logo {
