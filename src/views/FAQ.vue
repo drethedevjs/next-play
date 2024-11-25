@@ -30,7 +30,7 @@ export default {
   </section>
 </template>
 
-<style>
+<style scoped>
 h1 {
   @apply text-center sm:text-8xl text-5xl font-bold uppercase border-b-2 border-b-dark pb-3 mb-10;
 }
