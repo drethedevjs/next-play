@@ -125,7 +125,7 @@ input:is([type="checkbox"]){
 }
 
 input:not([type="checkbox"]), select {
-  @apply h-24 pl-5 sm:text-4xl block w-full rounded-md py-1.5 text-dark shadow-sm ring-1 ring-inset ring-secondary placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-warning;
+  @apply h-24 pl-5 sm:text-4xl text-2xl block w-full rounded-md py-1.5 text-dark shadow-sm ring-1 ring-inset ring-secondary focus:ring-2 focus:ring-inset focus:ring-warning;
 }
 
 h1 {
