@@ -24,7 +24,7 @@ const navLinks: INavLinks[] = [
   {
     name: "Contact",
     path: "/contact",
-    isActive: false
+    isActive: true
   },
   {
     name: "FAQ",
