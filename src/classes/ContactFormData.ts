@@ -9,6 +9,7 @@ export default class ContactFormData implements IContactFormData {
     public city: string = "",
     public region: string = "",
     public postalCode: string = "",
+    public company: string = "",
     public services: string[] = [],
     public sports: string[] = []
   ) {
@@ -21,6 +22,7 @@ export default class ContactFormData implements IContactFormData {
     this.email = "",
     this.message = "",
     this.city = "",
+    this.company = "",
     this.region = "",
     this.postalCode = "",
     this.services = [],

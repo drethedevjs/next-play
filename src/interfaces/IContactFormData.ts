@@ -8,4 +8,5 @@ export default interface IContactFormData {
   postalCode: string;
   services: string[];
   sports: string[];
+  company: string;
 }

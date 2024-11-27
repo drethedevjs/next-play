@@ -1,5 +1,8 @@
-<script lang="ts">
+<script lang="ts" setup>
+import { toTypedSchema } from '@vee-validate/yup';
+import { Field, useForm } from 'vee-validate';
 import { reactive, ref } from 'vue';
+import { object, string } from 'yup';
 import ContactFormData from '../classes/ContactFormData';
 import Sport from '../classes/Sports';
 import servicesData from '../data/services';
@@ -8,28 +11,26 @@ import IService from '../interfaces/IService';
 const services = ref<IService[]>(servicesData);
 const sports = Object.values(Sport) as string[];
 
-export default {
-  setup() {
-    let formData = reactive<ContactFormData>(new ContactFormData());
+let formData = reactive<ContactFormData>(new ContactFormData());
 
-    const resetForm = () => { formData.clear(); };
+const { resetForm, handleSubmit, isSubmitting, errors } = useForm<ContactFormData>({
+  validationSchema: toTypedSchema(
+    object({
+      firstName: string().transform(x => x.trim()).required("First name is required"),
+      lastName: string().required("Last name is required"),
+      email: string().email().required("Must be a valid email address."),
+      message: string().min(15, "Must be at least 15 characters."),
+    }))
+});
 
-    const submitForm = () => {
-      console.dir({...formData});
-      alert("submitted!");
-      resetForm();
-      window.scrollTo({top: 0, behavior: "smooth"});
-    }
+const scrollToTop = () => window.scrollTo({top: 0, behavior: "smooth"});
 
-    return {
-      formData,
-      services,
-      sports,
-      submitForm,
-      resetForm
-    }
-  }
-}
+const submitForm = handleSubmit((values: ContactFormData) => {
+  console.log("Form values:", values);
+  console.log("Form data:", formData);
+  resetForm();
+  scrollToTop();
+}, () => scrollToTop());
 </script>
 
 <template>
@@ -41,51 +42,63 @@ export default {
           <div class="border-b border-gray-900/10 pb-12">
             <div class="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
               <div class="md:col-span-3 sm:col-span-full">
-                <label for="first-name">First name</label>
+                <label for="firstName">First name</label>
                 <div class="mt-2">
-                  <input type="text" name="first-name" id="first-name" autocomplete="given-name" v-model.lazy.trim="formData.firstName" />
+                  <Field name="firstName" autocomplete="given-name" v-model.lazy.trim="formData.firstName" />
+                  <small class="error-message">{{ errors.firstName }}</small>
                 </div>
               </div>
 
               <div class="md:col-span-3 sm:col-span-full">
-                <label for="last-name">Last name</label>
+                <label for="lastName">Last name</label>
                 <div class="mt-2">
-                  <input type="text" name="last-name" id="last-name" autocomplete="family-name" v-model.lazy="formData.lastName" />
+                  <Field name="lastName" autocomplete="family-name" v-model.lazy.trim="formData.lastName" />
+                  <small class="error-message">{{ errors.lastName }}</small>
+                </div>
+              </div>
+
+              <div class="col-span-full">
+                <label for="company">Company</label>
+                <div class="mt-2">
+                  <Field name="company" autocomplete="company" v-model.lazy.trim="formData.company" />
                 </div>
               </div>
 
               <div class="col-span-full">
                 <label for="email">Email address</label>
                 <div class="mt-2">
-                  <input id="email" name="email" type="email" autocomplete="email" v-model.lazy.trim="formData.email" />
+                  <Field name="email" autocomplete="email" v-model.lazy.trim="formData.email" />
+                  <small class="error-message">{{ errors.email }}</small>
                 </div>
               </div>
 
               <div class="col-span-full">
                 <label for="message">Message</label>
                 <div class="mt-2">
-                  <textarea id="message" name="message" v-model.lazy.trim="formData.message"></textarea>
+                  <Field name="message" autocomplete="message" as="textarea" v-model.lazy.trim="formData.message" />
+                  <small class="error-message">{{ errors.message }}</small>
                 </div>
               </div>
 
               <div class="lg:col-span-3 lg:col-start-1 col-span-full">
                 <label for="city">City</label>
                 <div class="mt-2">
-                  <input type="text" name="city" id="city" autocomplete="city" v-model.lazy.trim="formData.city" />
+                  <Field name="city" autocomplete="city" v-model.lazy.trim="formData.city" />
+                  <small class="error-message">{{ errors.city }}</small>
                 </div>
               </div>
 
               <div class="lg:col-span-2 col-span-full">
                 <label for="region">State / Province</label>
                 <div class="mt-2">
-                  <input type="text" name="region" id="region" v-model.lazy.trim="formData.region" />
+                  <Field name="region" autocomplete="region" v-model.lazy.trim="formData.region" />
                 </div>
               </div>
 
               <div class="lg:col-span-1 col-span-full">
-                <label for="postal-code">Postal code</label>
+                <label for="postalCode">Postal code</label>
                 <div class="mt-2">
-                  <input type="text" name="postal-code" id="postal-code" autocomplete="postal-code" v-model.lazy.trim="formData.postalCode" />
+                  <Field name="postalCode" autocomplete="postalCode" v-model.lazy.trim="formData.postalCode" />
                 </div>
               </div>
 
@@ -95,7 +108,7 @@ export default {
                   <small>What service(s) are you interested in?</small>
                   <div class="flex mt-2" v-for="service in services" :key="service.id">
                     <label class="flex items-center">
-                      <input type="checkbox" :id="service.name" :name="service.name" :value="service.name" class="service" v-model="formData.services" />
+                      <Field type="checkbox" :id="service.name" name="service" :value="service.name" :checked="formData.services.includes(service.name)" />
                       {{ service.name }}
                     </label>
                   </div>
@@ -107,7 +120,7 @@ export default {
                   <small>What organized sports have you played?</small>
                   <div class="grid xl:grid-cols-3 sm:grid-cols-2 mt-2">
                     <label class="flex items-center sm:mb-0 mb-1" v-for="sport in sports" :key="sport">
-                      <input type="checkbox" :id="sport" :name="sport" :value="sport" class="sport" v-model="formData.sports" />
+                      <Field type="checkbox" :id="sport" name="sport" :value="sport" :checked="formData.sports.includes(sport)" />
                       {{ sport }}
                     </label>
                   </div>
@@ -117,7 +130,7 @@ export default {
           </div>
         </div>
 
-        <button type="submit">Send</button>
+        <button type="submit" :disabled="isSubmitting">Send</button>
       </form>
     </div>
   </section>
@@ -154,5 +167,9 @@ input:not([type="checkbox"]), select {
 
 h1 {
   @apply text-center sm:text-8xl text-5xl font-bold uppercase border-b-2 border-b-dark pb-3 mb-10;
+}
+
+.error-message {
+  @apply text-red-600 mt-1 inline-block;
 }
 </style>
