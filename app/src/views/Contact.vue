@@ -7,6 +7,7 @@ import ContactFormData from '../classes/ContactFormData';
 import Sport from '../classes/Sports';
 import servicesData from '../data/services';
 import IService from '../interfaces/IService';
+import emailService from '../services/emailService';
 
 const services = ref<IService[]>(servicesData);
 const sports = Object.values(Sport) as string[];
@@ -27,11 +28,8 @@ const { resetForm, handleSubmit, isSubmitting, errors } = useForm<ContactFormDat
 const scrollToTop = () => window.scrollTo({top: 0, behavior: "smooth"});
 
 const submitForm = handleSubmit(async (values: ContactFormData) => {
-  console.log("Form values:", values);
-  console.log("Form data:", formData);
-
   try {
-    // await emailService.sendEmail(values);
+    await emailService.sendEmail(values);
     showNotification.value = true;
     setTimeout(() => {
       showNotification.value = false;
