@@ -7,12 +7,12 @@ import ContactFormData from '../classes/ContactFormData';
 import Sport from '../classes/Sports';
 import servicesData from '../data/services';
 import IService from '../interfaces/IService';
-import emailService from '../services/emailService';
 
 const services = ref<IService[]>(servicesData);
 const sports = Object.values(Sport) as string[];
 
 let formData = reactive<ContactFormData>(new ContactFormData());
+let showNotification = ref<Boolean>(false);
 
 const { resetForm, handleSubmit, isSubmitting, errors } = useForm<ContactFormData>({
   validationSchema: toTypedSchema(
@@ -31,7 +31,12 @@ const submitForm = handleSubmit(async (values: ContactFormData) => {
   console.log("Form data:", formData);
 
   try {
-    await emailService.sendEmail(values);
+    // await emailService.sendEmail(values);
+    showNotification.value = true;
+    setTimeout(() => {
+      showNotification.value = false;
+    }, 5000);
+
     resetForm();
   } catch (error: any) {
     console.error(error?.message ?? "There was an issue with sending the form. Please try again.");
@@ -43,6 +48,9 @@ const submitForm = handleSubmit(async (values: ContactFormData) => {
 
 <template>
   <section>
+    <div class="notification-container" :class="showNotification ? 'flex' : 'hidden'">
+      <p class="notification">✅ Form Sent!</p>
+    </div>
     <div class="container mx-auto xl:px-52 px-5">
       <h1>Contact</h1>
       <form @submit.prevent="submitForm">
@@ -179,5 +187,13 @@ h1 {
 
 .error-message {
   @apply text-red-600 mt-1 inline-block;
+}
+
+.notification-container {
+  @apply fixed justify-center inset-x-0 bg-gradient-to-r from-eggshell to-emerald-200 rounded-lg p-5 md:w-52 w-3/4 mx-auto border-2 border-dark md:ml-10;
+}
+
+.notification {
+  @apply text-xl text-dark animate-bounce;
 }
 </style>
