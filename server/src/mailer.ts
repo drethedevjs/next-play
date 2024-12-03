@@ -2,6 +2,7 @@
 import "dotenv/config";
 import { google } from "googleapis";
 import nodemailer from "nodemailer";
+import SendEmailRequestBody from "./interfaces/SendEmailRequestBody.js";
 
 const oAuth2Client = new google.auth.OAuth2(
   process.env.CLIENT_ID,
@@ -12,8 +13,20 @@ const oAuth2Client = new google.auth.OAuth2(
 oAuth2Client.setCredentials({ refresh_token: process.env.REFRESH_TOKEN });
 
 const mailer = {
-  sendEmail: async (toEmail: string, recipientName: string, message: string) => {
-    console.log("my_email", process.env.MY_EMAIL);
+  sendEmail: async (formData: SendEmailRequestBody) => {
+    const {
+      firstName,
+      lastName,
+      company,
+      email,
+      message,
+      city,
+      region,
+      postalCode,
+      services,
+      sports
+    } = formData;
+
     const transport = nodemailer.createTransport({
       service: "gmail",
       auth: {
@@ -27,13 +40,29 @@ const mailer = {
         rejectUnauthorized: true,
       },
     });
-  
+
     //EMAIL OPTIONS
     const from = process.env.MY_EMAIL;
     const subject = "Next Play Project Inquiry";
-    const html = `<p>${message}</p>`;
-    
-    const result = await transport.sendMail({ from, subject, to: toEmail, html });
+    const html = `
+      <p>Name: ${firstName} ${lastName}</p>
+      <p>Company: ${company}</p>
+      <p>Email: ${email}</p>
+      <p>Location: ${city}, ${region}, ${postalCode}</p>
+      <p>Services:</p>
+      <ul>
+        ${services.map(s => '<li>' + s +'</li>').join('')}
+      </ul>
+      <p>Sports:</p>
+      <ul>
+        ${sports.map(sp => '<li>' + sp +'</li>').join('')}
+      </ul>
+
+      <p>Message:</p>
+      <p>${message}</p>
+    `;
+
+    const result = await transport.sendMail({ from, subject, to: email, html });
     return result;
   }
 }
