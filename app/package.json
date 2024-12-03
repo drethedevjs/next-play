@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@vee-validate/yup": "^4.14.7",
+    "axios": "^1.7.8",
     "hugeicons-vue": "^0.0.1",
     "vee-validate": "^4.14.7",
     "vite-plugin-vue-devtools": "^7.6.4",

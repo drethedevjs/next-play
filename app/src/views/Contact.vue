@@ -7,6 +7,7 @@ import ContactFormData from '../classes/ContactFormData';
 import Sport from '../classes/Sports';
 import servicesData from '../data/services';
 import IService from '../interfaces/IService';
+import emailService from '../services/emailService';
 
 const services = ref<IService[]>(servicesData);
 const sports = Object.values(Sport) as string[];
@@ -25,10 +26,17 @@ const { resetForm, handleSubmit, isSubmitting, errors } = useForm<ContactFormDat
 
 const scrollToTop = () => window.scrollTo({top: 0, behavior: "smooth"});
 
-const submitForm = handleSubmit((values: ContactFormData) => {
+const submitForm = handleSubmit(async (values: ContactFormData) => {
   console.log("Form values:", values);
   console.log("Form data:", formData);
-  resetForm();
+
+  try {
+    await emailService.sendEmail(values);
+    resetForm();
+  } catch (error: any) {
+    console.error(error?.message ?? "There was an issue with sending the form. Please try again.");
+  }
+
   scrollToTop();
 }, () => scrollToTop());
 </script>
@@ -108,7 +116,7 @@ const submitForm = handleSubmit((values: ContactFormData) => {
                   <small>What service(s) are you interested in?</small>
                   <div class="flex mt-2" v-for="service in services" :key="service.id">
                     <label class="flex items-center">
-                      <Field type="checkbox" :id="service.name" name="service" :value="service.name" :checked="formData.services.includes(service.name)" />
+                      <Field type="checkbox" :id="service.name" name="services" :value="service.name" :checked="formData.services.includes(service.name)" />
                       {{ service.name }}
                     </label>
                   </div>
@@ -120,7 +128,7 @@ const submitForm = handleSubmit((values: ContactFormData) => {
                   <small>What organized sports have you played?</small>
                   <div class="grid xl:grid-cols-3 sm:grid-cols-2 mt-2">
                     <label class="flex items-center sm:mb-0 mb-1" v-for="sport in sports" :key="sport">
-                      <Field type="checkbox" :id="sport" name="sport" :value="sport" :checked="formData.sports.includes(sport)" />
+                      <Field type="checkbox" :id="sport" name="sports" :value="sport" :checked="formData.sports.includes(sport)" />
                       {{ sport }}
                     </label>
                   </div>
