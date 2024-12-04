@@ -42,7 +42,7 @@ const mailer = {
     });
 
     //EMAIL OPTIONS
-    const from = process.env.MY_EMAIL;
+    const from = email;
     const subject = "Next Play Project Inquiry";
     const html = `
       <p>Name: ${firstName} ${lastName}</p>
