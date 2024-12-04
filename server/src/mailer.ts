@@ -62,7 +62,7 @@ const mailer = {
       <p>${message}</p>
     `;
 
-    const result = await transport.sendMail({ from, subject, to: process.env.MY_EMAIL, html });
+    const result = await transport.sendMail({ from, subject, to: process.env.MY_EMAIL, html, replyTo:email });
     return result;
   }
 }
