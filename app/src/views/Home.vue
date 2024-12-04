@@ -19,7 +19,9 @@ import Specialties from '../components/Specialties.vue';
       </p>
     </template>
     <template #action>
-      <button class="btn ready-btn disabled:cursor-not-allowed" disabled>Book Your Free Discovery Call</button>
+      <router-link to="/schedule">
+        <button class="btn ready-btn">Book Your Free Discovery Call</button>
+      </router-link>
     </template>
   </CallToAction>
 
