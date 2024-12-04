@@ -21,7 +21,7 @@ const services: IService[] = [
     duration: ["60-minute sessions"],
     formats: [],
     callToActionText: "Book a Free Discovery Call",
-    pricing: "Starting at [Insert Price] per session",
+    pricing: "$150 per session or $200 off for 8 weeks",
     hugeIcon: UserCircleIcon,
     ctaBtnLinkPath: "/schedule"
   },
@@ -40,10 +40,10 @@ const services: IService[] = [
       "Holistic Development for Young Athletes",
       "Coaching Beyond the Game: Supporting Your Team's Growth"
     ],
-    duration: ["90 minutes", "Full-day options available"],
+    duration: ["60 minutes", "Full-day options available (Prices may vary)"],
     formats: ["In-person workshops", "Virtual workshops"],
     callToActionText: "Inquire About Workshops",
-    pricing: "Contact us for group rates",
+    pricing: "$2000/session for up to 20 participants.",
     hugeIcon: UserGroupIcon,
     ctaBtnLinkPath: ""
   },
@@ -58,13 +58,13 @@ const services: IService[] = [
     ],
     highlightHeading: "Popular Courses",
     highlights: [
-      "Athletic Identity: Understanding Who You Are Beyond Sports’",
-      "Transferable Skills Decoder: Building Your Next Career’"
+      "Athletic Identity: Understanding Who You Are Beyond Sports",
+      "Transferable Skills Decoder: Building Your Next Career"
     ],
     duration: [],
     formats: ["Video lessons", "Downloadable materials", "Quizzes"],
     callToActionText: "Explore Courses",
-    pricing: "Starting at [Insert Price] per course",
+    pricing: "Basic (w/o workbook): $100/course. Plus (Course + Workbook): $110/course. Premium (Coaching Call): $250/course--Includes 1 follow-up call after each course in completed",
     hugeIcon: LaptopIcon,
     ctaBtnLinkPath: ""
   },
@@ -82,7 +82,7 @@ const services: IService[] = [
     duration: [],
     formats: ["Workbooks", "eBooks", "Guides"],
     callToActionText: "Browse Resources",
-    pricing: "From [Insert Price]",
+    pricing: "Ebooks & workbooks - $20/each. Bundling for up to 50% off.",
     hugeIcon: FileAttachmentIcon,
     ctaBtnLinkPath: ""
   },
