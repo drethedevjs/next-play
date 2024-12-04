@@ -23,10 +23,10 @@ const copyHexValue = (hexValue: string) => {
     <h2>Logos</h2>
     <small>Click to download logo</small>
     <div class="grid grid-cols-3 gap-5 mb-5">
-      <a href="../../public/logos/logo-black-MAIN.PNG" download><img src="../../public/logos/logo-black-MAIN.PNG" /></a>
-      <a href="../../public/logos/logo-navy-withTanBackgrnd-MAIN" download><img src="../../public/logos/logo-navy-withTanBackgrnd-MAIN.PNG" /></a>
-      <a href="../../public/logos/logo-slate-MAIN.PNG" download><img src="../../public/logos/logo-slate-MAIN.PNG" /></a>
-      <a href="../../public/logos/logo-slate-SECONDARY.PNG" download><img src="../../public/logos/logo-slate-SECONDARY.PNG" /></a>
+      <a href="/images/logo-black-MAIN.png" download><img src="/images/logo-black-MAIN.png" /></a>
+      <a href="/images/logo-navy-withTanBackgrnd-MAIN.png" download><img src="/images/logo-navy-withTanBackgrnd-MAIN.png" /></a>
+      <a href="/images/logo-slate-MAIN.png" download><img src="/images/logo-slate-MAIN.png" /></a>
+      <a href="/images/logo-slate-SECONDARY.png" download><img src="/images/logo-slate-SECONDARY.png" /></a>
     </div>
   </div>
 </template>
