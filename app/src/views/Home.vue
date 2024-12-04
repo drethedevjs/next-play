@@ -38,10 +38,10 @@ import Specialties from '../components/Specialties.vue';
     </template>
     <template #action>
       <router-link :to="`${Navigation.FAQ}`">
-        <button class="btn action-btn mr-3">FAQ</button>
+        <button class="btn got-questions-btn mr-3">FAQ</button>
       </router-link>
       <router-link to="/contact">
-        <button class="btn action-btn">Contact Us</button>
+        <button class="btn got-questions-btn">Contact Us</button>
       </router-link>
     </template>
   </CallToAction>
@@ -60,7 +60,7 @@ import Specialties from '../components/Specialties.vue';
     @apply bg-secondary text-white border-2 border-secondary;
   }
 
-  .action-btn {
+  .got-questions-btn {
     @apply bg-secondary text-white hover:text-dark border-2 border-secondary;
   }
 </style>

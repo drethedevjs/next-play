@@ -35,19 +35,15 @@ const { highlightHeading, hasFormats, hasDurations, callToActionBtnTxt, ctaBtnLi
     Contact us for pricing.
   </slot>
   <router-link :to="ctaBtnLinkPath" v-show="ctaBtnLinkPath">
-    <button>{{ callToActionBtnTxt }}</button>
+    <button class="action-btn">{{ callToActionBtnTxt }}</button>
   </router-link>
 
-  <button class="disabled-btn" v-show="!ctaBtnLinkPath">Coming Soon</button>
+  <button class="disabled-btn action-btn" v-show="!ctaBtnLinkPath">Coming Soon</button>
 </template>
 
 <style scoped>
 h4 {
   @apply text-2xl uppercase font-semibold mb-4;
-}
-
-button {
-  @apply w-full py-5 bg-secondary rounded mt-10 text-2xl text-white border-2 border-secondary hover:bg-white hover:text-dark transition-colors;
 }
 
 button.disabled-btn {

@@ -46,7 +46,7 @@ const headshotUrl = ref(headshot);
         <p>
           Through personalized coaching, workshops, and online resources, I'll guide you or your athlete to:
         </p>
-          <ul class="list-disc">
+          <ul>
             <li>Navigate the challenges of identity foreclosure.</li>
             <li>Identify and develop transferable skills for life after sports.</li>
             <li>Build a balanced, fulfilling life that integrates purpose with performance.</li>
@@ -61,7 +61,7 @@ const headshotUrl = ref(headshot);
       </section>
       <section>
         <router-link to="/services">
-          <button class="get-start-btn">Get Started</button>
+          <button class="action-btn">Get Started</button>
         </router-link>
       </section>
     </div>
@@ -86,10 +86,6 @@ const headshotUrl = ref(headshot);
   }
 
   ul {
-    @apply text-2xl ml-10 mb-6;
-  }
-
-  .get-start-btn {
-    @apply py-4 w-full bg-secondary border-2 border-secondary text-white hover:bg-white hover:text-dark rounded my-10 transition-colors text-2xl;
+    @apply text-2xl ml-10 mb-6 list-disc;
   }
 </style>

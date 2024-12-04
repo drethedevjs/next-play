@@ -53,7 +53,7 @@ const submitForm = handleSubmit(async (values: ContactFormData) => {
       <h1>Contact</h1>
       <form @submit.prevent="submitForm">
         <div class="space-y-12">
-          <div class="border-b border-gray-900/10 pb-12">
+          <div class="pb-12">
             <div class="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
               <div class="md:col-span-3 sm:col-span-full">
                 <label for="firstName">First name</label>
@@ -144,17 +144,13 @@ const submitForm = handleSubmit(async (values: ContactFormData) => {
           </div>
         </div>
 
-        <button type="submit" :disabled="isSubmitting">Send</button>
+        <button type="submit" :disabled="isSubmitting" class="action-btn">Send</button>
       </form>
     </div>
   </section>
 </template>
 
 <style scoped>
-button {
-  @apply text-3xl w-full py-3 bg-secondary text-white rounded-md mb-10 border-2 border-secondary hover:bg-white hover:text-dark transition-colors;
-}
-
 textarea {
   @apply ring-secondary ring-1 rounded-md w-full h-36 p-5 text-2xl;
 }
