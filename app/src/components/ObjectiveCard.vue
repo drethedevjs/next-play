@@ -6,7 +6,7 @@ const { specialty } = defineProps<{specialty:ISpecialty}>();
 <template>
   <div class="card">
     <component :is="specialty.hugeIcon" class="huge-icon" ></component>
-    <h1>{{ specialty.name }}</h1>
+    <h2>{{ specialty.name }}</h2>
     <p>{{ specialty.description}}</p>
     <router-link :to="`/services?id=${specialty.id}`">
       <button class="btn">Learn More</button>
@@ -15,7 +15,7 @@ const { specialty } = defineProps<{specialty:ISpecialty}>();
 </template>
 
 <style scoped>
-h1 {
+h2 {
   @apply uppercase font-semibold mb-3 mt-5 text-secondary;
 }
 

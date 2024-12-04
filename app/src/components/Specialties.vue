@@ -16,7 +16,8 @@ const specs = ref<ISpecialty[]>(specialties);
     <div class="heading-intro">
       <h1 class="pane-header">Our Specialties</h1>
       <h2>How we help you with your next major play</h2>
-      <p>At the Next Play Project, we provide tailored solutions to help athletes, parents, and coaches navigate the challenges of athletic identity.
+      <p>
+        At the Next Play Project, we provide tailored solutions to help athletes, parents, and coaches navigate the challenges of athletic identity.
         Whether you're looking for one-on-one guidance, group workshops, or online resources, our services are designed to support you every step of the way.
       </p>
     </div>
