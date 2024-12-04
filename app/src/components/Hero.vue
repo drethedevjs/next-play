@@ -16,7 +16,9 @@ const logoUrl = ref(logo);
         We exist to help athletes find their the <span class="text-secondary">next play</span> during their life after sports.
       </p>
       <div class="action-btns">
-        <button class="book-speaker-btn btn disabled:cursor-not-allowed" disabled>Book Speaker</button>
+        <router-link to="/schedule">
+          <button class="book-speaker-btn btn">Book Speaker</button>
+        </router-link>
         <router-link to="/subscribe">
           <button class="subscribe-btn btn">Subscribe to Newsletter</button>
         </router-link>

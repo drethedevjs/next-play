@@ -7,6 +7,7 @@ import Books from './views/Books.vue';
 import Contact from './views/Contact.vue';
 import FAQ from './views/FAQ.vue';
 import Home from './views/Home.vue';
+import Schedule from './views/Schedule.vue';
 import Services from './views/Services.vue';
 import Subscribe from './views/Subscribe.vue';
 
@@ -19,7 +20,8 @@ const router = createRouter({
     { path: "/services", component: Services },
     { path: "/books", component: Books },
     { path: "/faq", component: FAQ },
-    { path: "/subscribe", component: Subscribe }
+    { path: "/subscribe", component: Subscribe },
+    { path: "/schedule", component: Schedule }
   ],
   scrollBehavior(to, from) {
     if (to.path === from.path)
@@ -28,6 +30,20 @@ const router = createRouter({
     return { top: 0, behavior: "smooth" };
   }
 });
+
+router.afterEach((to, from) => {
+  if(to.fullPath === "/schedule") {
+    const script = document.createElement('script');
+    script.src = 'https://assets.calendly.com/assets/external/widget.js';
+    script.async = true;
+    script.id = "calendy-script";
+    document.body.appendChild(script);
+  } else if (from.fullPath === "/schedule") {
+    let calendyScript = document.getElementById("calendy-script");
+    calendyScript?.remove();
+  }
+});
+
 
 const app = createApp(App)
 app.use(router);
