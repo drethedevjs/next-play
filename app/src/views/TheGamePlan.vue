@@ -84,6 +84,6 @@ p {
 }
 
 .quote {
-  @apply bg-eggshell p-6 my-10 rounded-lg italic;
+  @apply bg-cream p-6 my-10 rounded-lg italic;
 }
 </style>

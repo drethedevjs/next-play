@@ -2,7 +2,7 @@
   <footer role="contentinfo">
     <div>Copyright <span class="text-secondary">Next Play</span> 2024</div>
     <div class="mt-5 scale-75">Powered By 
-      <span class="text-secondary hover:text-eggshell">
+      <span class="text-secondary hover:text-cream">
         <a href="https://csra-web-services.vercel.app/" target="_blank">CSRA Web Dev Services</a>
       </span>
     </div>

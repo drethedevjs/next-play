@@ -4,6 +4,7 @@ import App from './App.vue';
 import './style.css';
 import About from './views/About.vue';
 import Books from './views/Books.vue';
+import Branding from './views/Branding.vue';
 import Contact from './views/Contact.vue';
 import FAQ from './views/FAQ.vue';
 import Home from './views/Home.vue';
@@ -23,6 +24,7 @@ const router = createRouter({
     { path: "/faq", component: FAQ },
     { path: "/subscribe", component: Subscribe },
     { path: "/game-plan", component: TheGamePlan },
+    { path: "/branding", component: Branding },
     { path: "/schedule", component: Schedule }
   ],
   scrollBehavior(to, from) {

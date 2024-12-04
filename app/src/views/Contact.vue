@@ -184,7 +184,7 @@ h1 {
 }
 
 .notification-container {
-  @apply fixed justify-center inset-x-0 bg-gradient-to-r from-eggshell to-emerald-200 rounded-lg p-5 md:w-52 w-3/4 mx-auto border-2 border-dark md:ml-10;
+  @apply fixed justify-center inset-x-0 bg-gradient-to-r from-cream to-emerald-200 rounded-lg p-5 md:w-52 w-3/4 mx-auto border-2 border-dark md:ml-10;
 }
 
 .notification {
