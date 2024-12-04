@@ -6,6 +6,7 @@ export default class Navigation {
   static readonly CONTACT = "/contact";
   static readonly SERVICES = "/services";
   static readonly BOOKS = "/books";
+  static readonly GAME = "/game-plan";
   static readonly FAQ = "/faq";
   static readonly SUBSCRIBE = "/subscribe";
   static readonly SCHEDULE = "/schedule";

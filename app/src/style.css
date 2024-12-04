@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 .np-container {
-  @apply mt-8 container mx-auto text-center;
+  @apply mt-8 container mx-auto lg:px-32 px-10;
 }
 
 .pane-header {
@@ -12,4 +12,8 @@
 
 .page-h1 {
   @apply text-center sm:text-8xl text-5xl font-bold uppercase border-b-2 border-b-dark pb-3 mb-10;
+}
+
+.action-btn {
+  @apply w-full py-5 mb-10 bg-secondary rounded mt-10 text-2xl text-white border-2 border-secondary hover:bg-white hover:text-dark transition-colors;
 }

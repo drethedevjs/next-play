@@ -23,6 +23,11 @@ const navLinks: INavLinks[] = [
     isActive: false
   },
   {
+    name: "G.A.M.E. Plan",
+    path: Navigation.GAME,
+    isActive: true
+  },
+  {
     name: "Contact",
     path: Navigation.CONTACT,
     isActive: true

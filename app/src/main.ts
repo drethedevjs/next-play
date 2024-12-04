@@ -10,6 +10,7 @@ import Home from './views/Home.vue';
 import Schedule from './views/Schedule.vue';
 import Services from './views/Services.vue';
 import Subscribe from './views/Subscribe.vue';
+import TheGamePlan from './views/TheGamePlan.vue';
 
 const router = createRouter({
   history: createWebHistory(),
@@ -21,6 +22,7 @@ const router = createRouter({
     { path: "/books", component: Books },
     { path: "/faq", component: FAQ },
     { path: "/subscribe", component: Subscribe },
+    { path: "/game-plan", component: TheGamePlan },
     { path: "/schedule", component: Schedule }
   ],
   scrollBehavior(to, from) {
