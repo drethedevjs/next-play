@@ -1,34 +1,35 @@
+import Navigation from "../classes/Navigation";
 import INavLinks from "../interfaces/INavLinks";
 
 const navLinks: INavLinks[] = [
   {
     name: "Home",
-    path: "/",
+    path: Navigation.HOME,
     isActive: true
   },
   {
     name: "About",
-    path: "/about",
+    path: Navigation.ABOUT,
     isActive: true
   },
   {
     name: "Services",
-    path: "/services",
+    path: Navigation.SERVICES,
     isActive: true
   },
   {
     name: "Books",
-    path: "/books",
+    path: Navigation.BOOKS,
     isActive: false
   },
   {
     name: "Contact",
-    path: "/contact",
+    path: Navigation.CONTACT,
     isActive: true
   },
   {
     name: "FAQ",
-    path: "/faq",
+    path: Navigation.FAQ,
     isActive: true
   }
 ]

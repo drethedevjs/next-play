@@ -1,9 +1,10 @@
 import { FileAttachmentIcon, LaptopIcon, Mic01Icon, UserCircleIcon, UserGroupIcon } from "hugeicons-vue";
+import Navigation from "../classes/Navigation";
 import IService from "../interfaces/IService";
 
 const services: IService[] = [
   {
-    id: 1,  // Unique numeric ID for this service
+    id: 1,
     name: "One-on-One Coaching",
     tagLine: "Personalized Support for Athletes, Parents, and Coaches",
     offerings: [
@@ -23,7 +24,7 @@ const services: IService[] = [
     callToActionText: "Book a Free Discovery Call",
     pricing: "$150 per session or $200 off for 8 weeks",
     hugeIcon: UserCircleIcon,
-    ctaBtnLinkPath: "/schedule"
+    ctaBtnLinkPath: Navigation.SCHEDULE
   },
   {
     id: 2,  // Unique numeric ID for this service
@@ -103,7 +104,7 @@ const services: IService[] = [
     callToActionText: "Request a Speaking Engagement",
     pricing: "Contact us for details",
     hugeIcon: Mic01Icon,
-    ctaBtnLinkPath: "/schedule"
+    ctaBtnLinkPath: Navigation.SCHEDULE
 
   }
 ];

@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import Navigation from '../classes/Navigation';
 import ISpecialty from '../interfaces/ISpecialty';
 const { specialty } = defineProps<{specialty:ISpecialty}>();
 </script>
@@ -8,7 +9,7 @@ const { specialty } = defineProps<{specialty:ISpecialty}>();
     <component :is="specialty.hugeIcon" class="huge-icon" ></component>
     <h2>{{ specialty.name }}</h2>
     <p>{{ specialty.description}}</p>
-    <router-link :to="`/services?id=${specialty.id}`">
+    <router-link :to="`${Navigation.SERVICES}?id=${specialty.id}`">
       <button class="btn">Learn More</button>
     </router-link>
   </div>
