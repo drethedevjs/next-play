@@ -13,4 +13,5 @@ export default interface IService {
   highlightHeading: string;
   pricing: string;
   hugeIcon: FunctionalComponent<HugeiconsProps, {}, any, {}>
+  ctaBtnLinkPath: string;
 }

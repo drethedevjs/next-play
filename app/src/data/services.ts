@@ -22,7 +22,8 @@ const services: IService[] = [
     formats: [],
     callToActionText: "Book a Free Discovery Call",
     pricing: "Starting at [Insert Price] per session",
-    hugeIcon: UserCircleIcon
+    hugeIcon: UserCircleIcon,
+    ctaBtnLinkPath: "/schedule"
   },
   {
     id: 2,  // Unique numeric ID for this service
@@ -43,7 +44,8 @@ const services: IService[] = [
     formats: ["In-person workshops", "Virtual workshops"],
     callToActionText: "Inquire About Workshops",
     pricing: "Contact us for group rates",
-    hugeIcon: UserGroupIcon
+    hugeIcon: UserGroupIcon,
+    ctaBtnLinkPath: ""
   },
   {
     id: 3,  // Unique numeric ID for this service
@@ -63,7 +65,8 @@ const services: IService[] = [
     formats: ["Video lessons", "Downloadable materials", "Quizzes"],
     callToActionText: "Explore Courses",
     pricing: "Starting at [Insert Price] per course",
-    hugeIcon: LaptopIcon
+    hugeIcon: LaptopIcon,
+    ctaBtnLinkPath: ""
   },
   {
     id: 4,  // Unique numeric ID for this service
@@ -80,7 +83,8 @@ const services: IService[] = [
     formats: ["Workbooks", "eBooks", "Guides"],
     callToActionText: "Browse Resources",
     pricing: "From [Insert Price]",
-    hugeIcon: FileAttachmentIcon
+    hugeIcon: FileAttachmentIcon,
+    ctaBtnLinkPath: ""
   },
   {
     id: 5,  // Unique numeric ID for this service
@@ -98,7 +102,9 @@ const services: IService[] = [
     formats: ["In-person", "Virtual"],
     callToActionText: "Request a Speaking Engagement",
     pricing: "Contact us for details",
-    hugeIcon: Mic01Icon
+    hugeIcon: Mic01Icon,
+    ctaBtnLinkPath: "/schedule"
+
   }
 ];
 

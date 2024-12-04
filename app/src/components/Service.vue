@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { Clock02Icon, ComputerIcon, Idea01Icon, MoneySavingJarIcon } from 'hugeicons-vue';
 import IServiceProps from '../interfaces/IServiceProps';
-const { highlightHeading, hasFormats, hasDurations, callToActionBtnTxt } = defineProps<IServiceProps>();
+const { highlightHeading, hasFormats, hasDurations, callToActionBtnTxt, ctaBtnLinkPath } = defineProps<IServiceProps>();
 </script>
 <template>
   <slot name="heading"></slot>
@@ -34,8 +34,11 @@ const { highlightHeading, hasFormats, hasDurations, callToActionBtnTxt } = defin
   <slot name="pricing">
     Contact us for pricing.
   </slot>
+  <router-link :to="ctaBtnLinkPath" v-show="ctaBtnLinkPath">
+    <button>{{ callToActionBtnTxt }}</button>
+  </router-link>
 
-  <button class="disabled:cursor-not-allowed" disabled>{{ callToActionBtnTxt }}</button>
+  <button class="disabled-btn" v-show="!ctaBtnLinkPath">Coming Soon</button>
 </template>
 
 <style scoped>
@@ -45,5 +48,9 @@ h4 {
 
 button {
   @apply w-full py-5 bg-secondary rounded mt-10 text-2xl text-white border-2 border-secondary hover:bg-white hover:text-dark transition-colors;
+}
+
+button.disabled-btn {
+  @apply opacity-50 cursor-not-allowed;
 }
 </style>

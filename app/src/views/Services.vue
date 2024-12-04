@@ -39,7 +39,8 @@ export default {
       formats: [],
       callToActionText: "Book a Free Discovery Call",
       pricing: "Starting at [Insert Price] per session",
-      hugeIcon: UserCircleIcon
+      hugeIcon: UserCircleIcon,
+      ctaBtnLinkPath: "/schedule"
     }
     const router = useRouter();
     const route = useRoute();
@@ -105,6 +106,7 @@ export default {
         :hasFormats="!!selectedService.formats.length"
         :hasDurations="!!selectedService.duration.length"
         :callToActionBtnTxt="selectedService.callToActionText"
+        :ctaBtnLinkPath="selectedService.ctaBtnLinkPath"
       >
         <template #heading>
           <h2>{{ selectedService.name }}</h2>

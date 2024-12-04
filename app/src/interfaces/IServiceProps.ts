@@ -3,4 +3,5 @@ export default interface IServiceProps {
   hasFormats: boolean;
   hasDurations: boolean;
   callToActionBtnTxt: string;
+  ctaBtnLinkPath: string;
 }
