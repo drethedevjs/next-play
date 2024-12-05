@@ -86,7 +86,7 @@ function toggleMenu() {
   }
 
   #mobile-nav {
-    @apply bg-primary inset-y-0 left-0 fixed w-3/4 h-full z-10;
+    @apply bg-primary inset-y-0 left-0 fixed w-3/4 h-full z-10 overflow-scroll;
 
     li {
       @apply border-b-2 border-b-dark py-5 text-3xl hover:text-white active:text-secondary;
