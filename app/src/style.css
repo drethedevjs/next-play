@@ -17,3 +17,7 @@
 .action-btn {
   @apply w-full py-5 mb-10 bg-secondary rounded mt-10 text-2xl text-white border-2 border-secondary hover:bg-white hover:text-dark transition-colors;
 }
+
+html {
+  scroll-behavior: smooth;
+}

@@ -1,33 +1,36 @@
-<script lang="ts">
-import { ref } from "vue";
-import faqData from "../data/faqs";
-import IFaqs from "../interfaces/IFaqs";
-
-export default {
-  setup () {
-    const faqs = ref<IFaqs[]>(faqData);
-    return {
-      faqs
-    }
-  }
-}
+<script lang="ts" setup>
+import faqs from "../data/faqs";
 </script>
 <template>
-  <section>
-    <div class="container mx-auto xl:px-52 px-10">
-      <h1>FAQ</h1>
+  <div class="container mx-auto xl:px-52 px-10">
+    <h1>FAQ</h1>
+    <section>
+      <ul class="mb-5 border-b-2 pb-5">
+        <li class="question-list" v-for="faq in faqs" :key="faq.id">
+          <a :href="`#${faq.id.toString()}`"
+            >{{ faq.id }} // {{ faq.question }}</a
+          >
+        </li>
+      </ul>
+    </section>
+    <section>
       <div class="qna" v-for="faq in faqs" :key="faq.id">
-        <p class="question">{{ faq.id }} // {{ faq.question }}</p>
+        <p class="question" :id="faq.id.toString()">
+          {{ faq.id }} // {{ faq.question }}
+        </p>
         <p class="answer">{{ faq.answer }}</p>
         <div v-if="faq.hasList">
           <ul>
             <li class="list-disc" v-for="item in faq.list">{{ item }}</li>
           </ul>
         </div>
-      </div>
-    </div>
 
-  </section>
+        <a href="#top">
+          <p class="text-right text-secondary text-xl">scroll to top</p>
+        </a>
+      </div>
+    </section>
+  </div>
 </template>
 
 <style scoped>
@@ -43,11 +46,15 @@ h1 {
   @apply font-bold text-secondary uppercase mb-3;
 }
 
+.question-list {
+  @apply text-2xl hover:text-secondary mb-3;
+}
+
 .answer {
   @apply pb-3;
 }
 
-li {
+li.list-disc {
   @apply md:ml-20 ml-10;
 }
 </style>
