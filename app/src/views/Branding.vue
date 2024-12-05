@@ -7,16 +7,14 @@ import { IColor } from '../interfaces/IBrandColor';
 const brandColors = reactive(brandColorsData);
 
 const copyHexValue = (color: IColor) => {
-  color.copied = true;
+  toggleCopy(color);
   navigator.clipboard.writeText(color.hexValue);
   setTimeout(() => {
-    change(color);
+    toggleCopy(color);
   }, 3000)
 }
 
-const change = (color: IColor) => {
-  color.copied = !color.copied;
-}
+const toggleCopy = (color: IColor) => color.copied = !color.copied;
 </script>
 <template>
   <div class="np-container">
