@@ -24,14 +24,16 @@ const change = (color: IColor) => {
 
     <h2>Colors</h2>
     <h3>Primary</h3>
-    <div 
-      v-for="color in brandColors.primary"
-      class="color flex justify-between"
-      :class="[color.bgClassName, color.textColor]"
-    >
-      {{ color.name }}: {{ color.hexValue }}
-      <Copy01Icon class="copy" @click="() => copyHexValue(color)" v-show="!color.copied" />
-      <p class="animate-bounce" v-show="color.copied">Copied!</p>
+    <div class="grid lg:grid-cols-3 gap-3">
+      <div 
+        v-for="color in brandColors.primary"
+        class="primary-color flex justify-between"
+        :class="[color.bgClassName, color.textColor]"
+      >
+        {{ color.name }}: {{ color.hexValue }}
+        <Copy01Icon class="primary-copy" @click="() => copyHexValue(color)" v-show="!color.copied" />
+        <p class="animate-bounce" v-show="color.copied">Copied!</p>
+      </div>
     </div>
 
     <h3>Others</h3>
@@ -87,6 +89,14 @@ h3 {
 
 .color {
   @apply text-xl font-semibold rounded-md mb-2 p-4 hover:ring-2 hover:ring-charcoal;
+}
+
+.primary-color {
+  @apply p-10 rounded-xl text-3xl hover:ring-2 hover:ring-charcoal;
+}
+
+.primary-copy {
+  @apply hover:scale-150 scale-125 active:text-white active:rotate-12;
 }
 
 .copy {
