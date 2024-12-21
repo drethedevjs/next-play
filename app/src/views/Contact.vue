@@ -58,7 +58,7 @@ const submitForm = handleSubmit(async (values: ContactFormData) => {
               <div class="md:col-span-3 sm:col-span-full">
                 <label for="firstName">First name</label>
                 <div class="mt-2">
-                  <Field name="firstName" autocomplete="given-name" v-model.lazy.trim="formData.firstName" />
+                  <Field name="firstName" id="firstName" autocomplete="given-name" v-model.lazy.trim="formData.firstName" />
                   <small class="error-message">{{ errors.firstName }}</small>
                 </div>
               </div>
@@ -66,7 +66,7 @@ const submitForm = handleSubmit(async (values: ContactFormData) => {
               <div class="md:col-span-3 sm:col-span-full">
                 <label for="lastName">Last name</label>
                 <div class="mt-2">
-                  <Field name="lastName" autocomplete="family-name" v-model.lazy.trim="formData.lastName" />
+                  <Field name="lastName" id="lastName" autocomplete="family-name" v-model.lazy.trim="formData.lastName" />
                   <small class="error-message">{{ errors.lastName }}</small>
                 </div>
               </div>
@@ -74,14 +74,14 @@ const submitForm = handleSubmit(async (values: ContactFormData) => {
               <div class="col-span-full">
                 <label for="company">Company</label>
                 <div class="mt-2">
-                  <Field name="company" autocomplete="company" v-model.lazy.trim="formData.company" />
+                  <Field name="company" id="company" autocomplete="company" v-model.lazy.trim="formData.company" />
                 </div>
               </div>
 
               <div class="col-span-full">
                 <label for="email">Email address</label>
                 <div class="mt-2">
-                  <Field name="email" autocomplete="email" v-model.lazy.trim="formData.email" />
+                  <Field name="email" id="email" autocomplete="email" v-model.lazy.trim="formData.email" />
                   <small class="error-message">{{ errors.email }}</small>
                 </div>
               </div>
@@ -89,7 +89,7 @@ const submitForm = handleSubmit(async (values: ContactFormData) => {
               <div class="col-span-full">
                 <label for="message">Message</label>
                 <div class="mt-2">
-                  <Field name="message" autocomplete="message" as="textarea" v-model.lazy.trim="formData.message" />
+                  <Field name="message" id="message" autocomplete="message" as="textarea" v-model.lazy.trim="formData.message" />
                   <small class="error-message">{{ errors.message }}</small>
                 </div>
               </div>
@@ -97,7 +97,7 @@ const submitForm = handleSubmit(async (values: ContactFormData) => {
               <div class="lg:col-span-3 lg:col-start-1 col-span-full">
                 <label for="city">City</label>
                 <div class="mt-2">
-                  <Field name="city" autocomplete="city" v-model.lazy.trim="formData.city" />
+                  <Field name="city" id="city" autocomplete="city" v-model.lazy.trim="formData.city" />
                   <small class="error-message">{{ errors.city }}</small>
                 </div>
               </div>
@@ -105,14 +105,14 @@ const submitForm = handleSubmit(async (values: ContactFormData) => {
               <div class="lg:col-span-2 col-span-full">
                 <label for="region">State / Province</label>
                 <div class="mt-2">
-                  <Field name="region" autocomplete="region" v-model.lazy.trim="formData.region" />
+                  <Field name="region" id="region" autocomplete="region" v-model.lazy.trim="formData.region" />
                 </div>
               </div>
 
               <div class="lg:col-span-1 col-span-full">
                 <label for="postalCode">Postal code</label>
                 <div class="mt-2">
-                  <Field name="postalCode" autocomplete="postalCode" v-model.lazy.trim="formData.postalCode" />
+                  <Field name="postalCode" id="postalCode" autocomplete="postalCode" v-model.lazy.trim="formData.postalCode" />
                 </div>
               </div>
 
