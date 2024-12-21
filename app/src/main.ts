@@ -10,6 +10,7 @@ import FAQ from './views/FAQ.vue';
 import Home from './views/Home.vue';
 import Schedule from './views/Schedule.vue';
 import Services from './views/Services.vue';
+import Shop from './views/Shop.vue';
 import Subscribe from './views/Subscribe.vue';
 import TheGamePlan from './views/TheGamePlan.vue';
 
@@ -25,7 +26,8 @@ const router = createRouter({
     { path: "/subscribe", component: Subscribe },
     { path: "/game-plan", component: TheGamePlan },
     { path: "/branding", component: Branding },
-    { path: "/schedule", component: Schedule }
+    { path: "/schedule", component: Schedule },
+    { path: "/shop", component: Shop }
   ],
   scrollBehavior(to, from) {
     if (to.path === from.path)
