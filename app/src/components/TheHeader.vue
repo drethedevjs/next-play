@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { CancelCircleIcon, Menu01Icon as HamburgerMenu } from 'hugeicons-vue';
+import { CancelCircleIcon, Menu01Icon as HamburgerMenu, MinusSignIcon, PlusSignIcon } from 'hugeicons-vue';
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
 import navLinks from '../data/navLinks';
@@ -11,11 +11,17 @@ const isMenuOpen = ref(false);
 const router = useRouter();
 function navigate(to: string) {
   toggleMenu();
+  // close all open sub menus
+  headerLinks.value.map(l => l.showSubmenu = false);
   router.push(to);
 }
 
 function toggleMenu() {
   isMenuOpen.value = !isMenuOpen.value;
+}
+
+const toggleSubMenu = (link: INavLinks, show: boolean) => {
+  link.showSubmenu = show;
 }
 </script>
 
@@ -61,9 +67,25 @@ function toggleMenu() {
         </div>
         <ul>
             <template v-for="link in headerLinks">
-              <li v-if="link.isActive" @click="navigate(link.path)">
-                {{link.name}}
+              <li v-if="link.isActive" class="mobile-link">
+                <div class="flex justify-between px-5 items-center">
+                  <span @click="navigate(link.path)" class="active:text-secondary">{{link.name}}</span>
+                  <PlusSignIcon v-show="link.subMenu?.length && !link.showSubmenu" @click.prevent="toggleSubMenu(link, true)" />
+                  <MinusSignIcon v-show="link.subMenu?.length && link.showSubmenu" @click.prevent="toggleSubMenu(link, false)" />
+                </div>
+
               </li>
+              <ul v-show="link.showSubmenu" class="mobile-sublink-container">
+                <li 
+                  :key="link.name" 
+                  v-for="subLink in link.subMenu" 
+                  v-show="link.showSubmenu && subLink.isActive" 
+                  class="mobile-sublink"
+                  @click="navigate(subLink.path)"
+                >
+                  {{ subLink.name }}
+                </li>
+              </ul>
             </template>
           </ul>
       </div>
@@ -75,9 +97,17 @@ function toggleMenu() {
   .sublink-container {
     @apply bg-primary p-5 rounded-lg absolute mt-0 shadow-lg ml-4;
   }
-
+  
   .sublink {
     @apply m-0 mb-4 hover:text-white;
+  }
+
+  .mobile-sublink-container {
+    @apply bg-secondary pl-10;
+  }
+
+  .mobile-sublink {
+    @apply m-0 mb-4;
   }
 
   .logo {
@@ -96,6 +126,10 @@ function toggleMenu() {
     @apply ml-5 hover:text-secondary transition-colors;
   }
 
+  .mobile-link {
+    /* @apply pl-5; */
+  }
+
   #hamburger-menu {
     @apply active:text-primary;
   }
@@ -109,10 +143,14 @@ function toggleMenu() {
   }
 
   #mobile-nav {
-    @apply bg-primary inset-y-0 left-0 fixed w-3/4 h-full z-10 overflow-scroll;
+    @apply bg-primary inset-y-0 left-0 fixed w-3/4 h-full z-10 overflow-scroll shadow-2xl;
 
     li {
-      @apply border-b-2 border-b-dark py-5 text-3xl hover:text-white active:text-secondary;
+      @apply py-5 text-3xl;
+    }
+
+    .mobile-link {
+      @apply border-b-2 border-b-dark;
     }
   }
 
