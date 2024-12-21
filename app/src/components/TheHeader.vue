@@ -39,16 +39,25 @@ const toggleSubMenu = (link: INavLinks, show: boolean) => {
               <router-link :to="link.path">
                 <span class="top-link">{{link.name}}</span>
               </router-link>
-              <ul v-show="link.showSubmenu" class="sublink-container"
-                @mouseover="link.showSubmenu = true"
-                @mouseleave="link.showSubmenu = false"
-              >
-                <li v-for="subLink in link.subMenu" v-show="link.showSubmenu && subLink.isActive" :key="link.name" class="sublink">
-                  <router-link :to="subLink.path">
-                    {{ subLink.name }}
-                  </router-link>
-                </li>
-              </ul>
+              <div v-if="link.subMenu && link.subMenu.length > 0">
+                <ul 
+                  v-show="link.showSubmenu" 
+                  class="sublink-container"
+                  @mouseover="link.showSubmenu = true"
+                  @mouseleave="link.showSubmenu = false"
+                >
+                  <li 
+                    v-for="subLink in link.subMenu" 
+                    v-show="link.showSubmenu && subLink.isActive" 
+                    :key="link.name" 
+                    class="sublink"
+                  >
+                    <router-link :to="subLink.path">
+                      {{ subLink.name }}
+                    </router-link>
+                  </li>
+                </ul>
+              </div>
             </li>
           </template>
         </ul>
@@ -66,28 +75,28 @@ const toggleSubMenu = (link: INavLinks, show: boolean) => {
           <CancelCircleIcon class="absolute top-5 sm:right-16 right-5 size-8 hover:text-white" @click="toggleMenu" />
         </div>
         <ul>
-            <template v-for="link in headerLinks">
-              <li v-if="link.isActive" class="mobile-link">
-                <div class="flex justify-between px-5 items-center">
-                  <span @click="navigate(link.path)" class="active:text-secondary">{{link.name}}</span>
-                  <PlusSignIcon v-show="link.subMenu?.length && !link.showSubmenu" @click.prevent="toggleSubMenu(link, true)" />
-                  <MinusSignIcon v-show="link.subMenu?.length && link.showSubmenu" @click.prevent="toggleSubMenu(link, false)" />
-                </div>
+          <template v-for="link in headerLinks">
+            <li v-if="link.isActive" class="mobile-link">
+              <div class="flex justify-between px-5 items-center">
+                <span @click="navigate(link.path)" class="active:text-secondary">{{link.name}}</span>
+                <PlusSignIcon v-show="link.subMenu?.length && !link.showSubmenu" @click.prevent="toggleSubMenu(link, true)" />
+                <MinusSignIcon v-show="link.subMenu?.length && link.showSubmenu" @click.prevent="toggleSubMenu(link, false)" />
+              </div>
 
+            </li>
+            <ul v-show="link.showSubmenu" class="mobile-sublink-container">
+              <li 
+                :key="link.name" 
+                v-for="subLink in link.subMenu" 
+                v-show="link.showSubmenu && subLink.isActive" 
+                class="mobile-sublink"
+                @click="navigate(subLink.path)"
+              >
+                {{ subLink.name }}
               </li>
-              <ul v-show="link.showSubmenu" class="mobile-sublink-container">
-                <li 
-                  :key="link.name" 
-                  v-for="subLink in link.subMenu" 
-                  v-show="link.showSubmenu && subLink.isActive" 
-                  class="mobile-sublink"
-                  @click="navigate(subLink.path)"
-                >
-                  {{ subLink.name }}
-                </li>
-              </ul>
-            </template>
-          </ul>
+            </ul>
+          </template>
+        </ul>
       </div>
     </div>
   </nav>
