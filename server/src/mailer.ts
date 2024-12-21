@@ -12,6 +12,15 @@ const oAuth2Client = new google.auth.OAuth2(
 
 oAuth2Client.setCredentials({ refresh_token: process.env.REFRESH_TOKEN });
 
+async function getAccessToken() {
+  // Automatically refresh the access token
+  const { token } = await oAuth2Client.getAccessToken();
+  if (!token) {
+    throw new Error("Failed to refresh access token");
+  }
+  return token;
+}
+
 const mailer = {
   sendEmail: async (formData: SendEmailRequestBody) => {
     const {
@@ -35,6 +44,7 @@ const mailer = {
         clientId: process.env.CLIENT_ID,
         clientSecret: process.env.CLIENT_SECRET,
         refreshToken: process.env.REFRESH_TOKEN,
+        accessToken: await getAccessToken()
       },
       tls: {
         rejectUnauthorized: true,
@@ -45,20 +55,20 @@ const mailer = {
     const from = email;
     const subject = "Next Play Project Inquiry";
     const html = `
-      <p>Name: ${firstName} ${lastName}</p>
-      <p>Company: ${company}</p>
-      <p>Email: ${email}</p>
-      <p>Location: ${city}, ${region}, ${postalCode}</p>
-      <p>Services:</p>
+      <p><b>Name:</b> ${firstName} ${lastName}</p>
+      <p><b>Company:</b> ${company}</p>
+      <p><b>Email:</b> ${email}</p>
+      <p><b>Location:</b> ${city}, ${region}, ${postalCode}</p>
+      <p><b>Services:</b></p>
       <ul>
         ${services.map(s => '<li>' + s +'</li>').join('')}
       </ul>
-      <p>Sports:</p>
+      <p><b>Sports:</b></p>
       <ul>
         ${sports.map(sp => '<li>' + sp +'</li>').join('')}
       </ul>
 
-      <p>Message:</p>
+      <p><b>Message:</b></p>
       <p>${message}</p>
     `;
 
