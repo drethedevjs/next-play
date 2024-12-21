@@ -18,16 +18,31 @@ function toggleMenu() {
   isMenuOpen.value = !isMenuOpen.value;
 }
 </script>
+
 <template>
   <nav>
     <div class="nav-container">
       <img src="/logo-blk-main.png" class="logo" alt="Next Play logo" />
       <ul class="flex flex-row">
           <template v-for="link in headerLinks">
-            <li v-if="link.isActive">
+            <li
+              v-if="link.isActive"
+              @mouseover="link.showSubmenu = true"
+              @mouseleave="link.showSubmenu = false"
+            >
               <router-link :to="link.path">
-                {{link.name}}
+                <span class="top-link">{{link.name}}</span>
               </router-link>
+              <ul v-show="link.showSubmenu" class="sublink-container"
+                @mouseover="link.showSubmenu = true"
+                @mouseleave="link.showSubmenu = false"
+              >
+                <li v-for="subLink in link.subMenu" v-show="link.showSubmenu && subLink.isActive" :key="link.name" class="sublink">
+                  <router-link :to="subLink.path">
+                    {{ subLink.name }}
+                  </router-link>
+                </li>
+              </ul>
             </li>
           </template>
         </ul>
@@ -57,6 +72,14 @@ function toggleMenu() {
 </template>
 
 <style scoped>
+  .sublink-container {
+    @apply bg-primary p-5 rounded-lg absolute mt-0 shadow-lg ml-4;
+  }
+
+  .sublink {
+    @apply m-0 mb-4 hover:text-white;
+  }
+
   .logo {
     @apply sm:h-24 h-10;
   }
@@ -69,7 +92,7 @@ function toggleMenu() {
     @apply size-40 w-52 mx-auto;
   }
 
-  li {
+  .top-link {
     @apply ml-5 hover:text-secondary transition-colors;
   }
 

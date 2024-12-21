@@ -10,6 +10,7 @@ export default class Navigation {
   static readonly FAQ = "/faq";
   static readonly SUBSCRIBE = "/subscribe";
   static readonly SCHEDULE = "/schedule";
+  static readonly SHOP = "/shop";
 
   // You can also define a method that returns the routes in an array, if needed
   static getAllRoutes() {
@@ -21,7 +22,8 @@ export default class Navigation {
       Navigation.BOOKS,
       Navigation.FAQ,
       Navigation.SUBSCRIBE,
-      Navigation.SCHEDULE
+      Navigation.SCHEDULE,
+      Navigation.SHOP
     ];
   }
 }

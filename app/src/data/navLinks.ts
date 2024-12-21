@@ -15,7 +15,20 @@ const navLinks: INavLinks[] = [
   {
     name: "Services",
     path: Navigation.SERVICES,
-    isActive: true
+    isActive: true,
+    showSubmenu: false,
+    subMenu: [
+      {
+        name: "G.A.M.E. Plan",
+        path: Navigation.GAME,
+        isActive: true
+      },
+      {
+        name: "Shop",
+        path: Navigation.SHOP,
+        isActive: false
+      }
+    ]
   },
   {
     name: "Books",
@@ -23,19 +36,32 @@ const navLinks: INavLinks[] = [
     isActive: false
   },
   {
-    name: "G.A.M.E. Plan",
-    path: Navigation.GAME,
-    isActive: true
-  },
-  {
     name: "Contact",
     path: Navigation.CONTACT,
-    isActive: true
+    isActive: true,
+    showSubmenu: false,
+    subMenu: [
+      {
+        name: "FAQ",
+        path: Navigation.FAQ,
+        isActive: true
+      },
+    ]
+  },
+  {
+    name: "G.A.M.E. Plan",
+    path: Navigation.GAME,
+    isActive: false
   },
   {
     name: "FAQ",
     path: Navigation.FAQ,
-    isActive: true
+    isActive: false
+  },
+  {
+    name: "Shop",
+    path: Navigation.SHOP,
+    isActive: false
   }
 ]
 
