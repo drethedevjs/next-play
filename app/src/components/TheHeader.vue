@@ -104,7 +104,7 @@ const toggleSubMenu = (link: INavLinks, show: boolean) => {
 
 <style scoped>
   .sublink-container {
-    @apply bg-primary p-5 rounded-lg absolute mt-0 shadow-lg ml-4;
+    @apply bg-primary p-5 rounded-lg absolute mt-0 shadow-lg ml-4 z-10;
   }
   
   .sublink {

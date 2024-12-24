@@ -26,7 +26,7 @@ const navLinks: INavLinks[] = [
       {
         name: "Shop",
         path: Navigation.SHOP,
-        isActive: false
+        isActive: true
       }
     ]
   },
