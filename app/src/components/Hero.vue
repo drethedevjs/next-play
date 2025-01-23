@@ -13,7 +13,7 @@ const logoUrl = ref(logo);
       <h1><span class="the-text">The</span><br><span class="next-play-text">Next Play</span> Project</h1>
       <p class="tag-line">Coaching. Workshops. Resources.</p>
       <p class="mission-line">
-        We exist to help athletes find their the <span class="text-secondary">next play</span> during their life after sports.
+        We exist to help athletes find their <span class="text-secondary">next play</span> during their life after sports.
       </p>
       <div class="action-btns">
         <router-link to="/schedule">
