@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-
+import Quote from '../components/Quote.vue';
 </script>
 
 <template>
@@ -10,11 +10,14 @@
       <h2 class="philosophy">Our Philosophy</h2>
       <p>Empowering Athletes to Transition Beyond Sports with Clarity and Confidence</p>
     </div>
-  
-    <p class="quote">
-      "What happens when the game ends? For many athletes, their identity and purpose are deeply
-        tied to their sport. When it's time to transition, the question becomes: Who am I beyond the game?"
-    </p>
+
+    <Quote>
+      <template #quote>
+        "What happens when the game ends? For many athletes, their identity and purpose are deeply
+          tied to their sport. When it's time to transition, the question becomes: Who am I beyond the game?"
+      </template>
+    </Quote>
+
     <p>
       This is where the <span class="text-secondary">G.A.M.E. Plan Framework</span> steps in—a proven, step-by-step approach created by Dr. Muff 
       to help athletes navigate this pivotal moment, redefine their identity, and take actionable steps toward 
@@ -45,9 +48,11 @@
       <li>Build a sustainable, fulfilling future with clear goals and direction.</li>
     </ul>
   
-    <p class="quote">
-      "The game may end, but your story is just beginning."
-    </p>
+    <Quote>
+      <template #quote>
+        "The game may end, but your story is just beginning."
+      </template>
+    </Quote>
   
     <p>
       Join the G.A.M.E. Plan Framework and start building the future you deserve. Whether you're preparing to retire, 
@@ -81,9 +86,5 @@ p {
 
 .philosophy {
   @apply border-r-2 border-l-2 border-l-secondary border-r-secondary pb-2 lg:w-1/2 mx-auto;
-}
-
-.quote {
-  @apply bg-cream p-6 my-10 rounded-lg italic;
 }
 </style>
