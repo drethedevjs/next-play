@@ -1,227 +1,143 @@
-<script lang="ts" setup>
-import { toTypedSchema } from "@vee-validate/yup";
-import { Field, useForm } from "vee-validate";
-import { reactive, ref } from "vue";
-import { object, string } from "yup";
-import ContactFormData from "../classes/ContactFormData";
-import Sport from "../classes/Sports";
-import servicesData from "../data/services";
-import IService from "../interfaces/IService";
-import emailService from "../services/emailService";
-
-const services = ref<IService[]>(servicesData);
-const sports = Object.values(Sport) as string[];
-
-let formData = reactive<ContactFormData>(new ContactFormData());
-let showNotification = ref<Boolean>(false);
-
-const { resetForm, handleSubmit, isSubmitting, errors } =
-  useForm<ContactFormData>({
-    validationSchema: toTypedSchema(
-      object({
-        firstName: string()
-          .transform(x => x.trim())
-          .required("First name is required"),
-        lastName: string().required("Last name is required"),
-        email: string().email().required("Must be a valid email address."),
-        message: string().min(15, "Must be at least 15 characters.")
-      })
-    )
-  });
-
-const scrollToTop = () => window.scrollTo({ top: 0, behavior: "smooth" });
-
-const submitForm = handleSubmit(
-  async (values: ContactFormData) => {
-    try {
-      await emailService.sendEmail(values);
-      showNotification.value = true;
-      setTimeout(() => {
-        showNotification.value = false;
-      }, 5000);
-
-      resetForm();
-    } catch (error: any) {
-      console.error(
-        error?.message ??
-          "There was an issue with sending the form. Please try again."
-      );
-    }
-
-    scrollToTop();
-  },
-  () => scrollToTop()
-);
-</script>
+<script lang="ts" setup></script>
 
 <template>
   <section id="contact">
-    <div
-      class="notification-container"
-      :class="showNotification ? 'flex' : 'hidden'"
-    >
-      <p class="notification">✅ Form Sent!</p>
-    </div>
     <div class="container mx-auto xl:px-52 px-5">
       <h1>Contact</h1>
-      <form @submit.prevent="submitForm">
-        <div class="space-y-12">
-          <div class="pb-12">
-            <div class="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
-              <div class="md:col-span-3 sm:col-span-full">
-                <label for="firstName">First name</label>
-                <div class="mt-2">
-                  <Field
-                    name="firstName"
-                    id="firstName"
-                    autocomplete="given-name"
-                    v-model.lazy.trim="formData.firstName"
-                  />
-                  <small class="error-message">{{ errors.firstName }}</small>
-                </div>
-              </div>
+      <div class="max-w-7xl px-4 sm:px-6 lg:px-8 py-12 mx-auto">
+        <div
+          class="grid grid-cols-1 lg:grid-cols-2 lg:items-center gap-6 md:gap-8 lg:gap-12"
+        >
+          <div
+            class="aspect-w-16 aspect-h-6 lg:aspect-h-14 overflow-hidden bg-gray-100 rounded-2xl"
+          >
+            <img
+              class="group-hover:scale-105 group-focus:scale-105 transition-transform duration-500 ease-in-out object-cover rounded-2xl"
+              src="https://images.unsplash.com/photo-1461897104016-0b3b00cc81ee?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+              alt="Runners in a race"
+            />
+          </div>
+          <!-- End Col -->
 
-              <div class="md:col-span-3 sm:col-span-full">
-                <label for="lastName">Last name</label>
-                <div class="mt-2">
-                  <Field
-                    name="lastName"
-                    id="lastName"
-                    autocomplete="family-name"
-                    v-model.lazy.trim="formData.lastName"
-                  />
-                  <small class="error-message">{{ errors.lastName }}</small>
-                </div>
-              </div>
+          <div class="space-y-8 lg:space-y-16">
+            <div>
+              <h3 class="mb-5 font-semibold text-black">Our address</h3>
 
-              <div class="col-span-full">
-                <label for="company">Company</label>
-                <div class="mt-2">
-                  <Field
-                    name="company"
-                    id="company"
-                    autocomplete="company"
-                    v-model.lazy.trim="formData.company"
-                  />
-                </div>
-              </div>
-
-              <div class="col-span-full">
-                <label for="email">Email address</label>
-                <div class="mt-2">
-                  <Field
-                    name="email"
-                    id="email"
-                    autocomplete="email"
-                    v-model.lazy.trim="formData.email"
-                  />
-                  <small class="error-message">{{ errors.email }}</small>
-                </div>
-              </div>
-
-              <div class="col-span-full">
-                <label for="message">Message</label>
-                <div class="mt-2">
-                  <Field
-                    name="message"
-                    id="message"
-                    autocomplete="message"
-                    as="textarea"
-                    v-model.lazy.trim="formData.message"
-                  />
-                  <small class="error-message">{{ errors.message }}</small>
-                </div>
-              </div>
-
-              <div class="lg:col-span-3 lg:col-start-1 col-span-full">
-                <label for="city">City</label>
-                <div class="mt-2">
-                  <Field
-                    name="city"
-                    id="city"
-                    autocomplete="city"
-                    v-model.lazy.trim="formData.city"
-                  />
-                  <small class="error-message">{{ errors.city }}</small>
-                </div>
-              </div>
-
-              <div class="lg:col-span-2 col-span-full">
-                <label for="region">State / Province</label>
-                <div class="mt-2">
-                  <Field
-                    name="region"
-                    id="region"
-                    autocomplete="region"
-                    v-model.lazy.trim="formData.region"
-                  />
-                </div>
-              </div>
-
-              <div class="lg:col-span-1 col-span-full">
-                <label for="postalCode">Postal code</label>
-                <div class="mt-2">
-                  <Field
-                    name="postalCode"
-                    id="postalCode"
-                    autocomplete="postalCode"
-                    v-model.lazy.trim="formData.postalCode"
-                  />
-                </div>
-              </div>
-
-              <div class="col-span-full">
-                <fieldset>
-                  <legend>Service</legend>
-                  <small>What service(s) are you interested in?</small>
-                  <div
-                    class="flex mt-2"
-                    v-for="service in services"
-                    :key="service.id"
+              <!-- Grid -->
+              <div
+                class="grid sm:grid-cols-2 gap-4 sm:gap-6 md:gap-8 lg:gap-12"
+              >
+                <div class="flex gap-4">
+                  <svg
+                    class="shrink-0 size-5 text-gray-500"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
                   >
-                    <label class="flex items-center">
-                      <Field
-                        type="checkbox"
-                        :id="service.name"
-                        name="services"
-                        :value="service.name"
-                        :checked="formData.services.includes(service.name)"
-                      />
-                      {{ service.name }}
-                    </label>
+                    <path
+                      d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"
+                    ></path>
+                    <circle cx="12" cy="10" r="3"></circle>
+                  </svg>
+
+                  <div class="grow">
+                    <p class="text-sm text-gray-600">United States</p>
+                    <address class="mt-1 text-black not-italic">
+                      Lexington, KY
+                    </address>
                   </div>
-                </fieldset>
+                </div>
               </div>
-              <div class="col-span-full">
-                <fieldset>
-                  <legend>Sports</legend>
-                  <small>What organized sports have you played?</small>
-                  <div class="grid xl:grid-cols-3 sm:grid-cols-2 mt-2">
-                    <label
-                      class="flex items-center sm:mb-0 mb-1"
-                      v-for="sport in sports"
-                      :key="sport"
-                    >
-                      <Field
-                        type="checkbox"
-                        :id="sport"
-                        name="sports"
-                        :value="sport"
-                        :checked="formData.sports.includes(sport)"
-                      />
-                      {{ sport }}
-                    </label>
+              <!-- End Grid -->
+            </div>
+
+            <div>
+              <h3 class="mb-5 font-semibold text-black">
+                We want to hear from you
+              </h3>
+
+              <!-- Grid -->
+              <div
+                class="grid sm:grid-cols-2 gap-4 sm:gap-6 md:gap-8 lg:gap-12"
+              >
+                <div class="flex gap-4">
+                  <svg
+                    class="shrink-0 size-5 text-gray-500"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path
+                      d="M21.2 8.4c.5.38.8.97.8 1.6v10a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V10a2 2 0 0 1 .8-1.6l8-6a2 2 0 0 1 2.4 0l8 6Z"
+                    ></path>
+                    <path
+                      d="m22 10-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 10"
+                    ></path>
+                  </svg>
+
+                  <div class="grow">
+                    <p class="text-sm text-gray-600">Email us</p>
+                    <p>
+                      <a
+                        class="relative inline-block font-medium text-black before:absolute before:bottom-0.5 before:start-0 before:-z-1 before:w-full before:h-1 before:bg-yellow-400 hover:before:bg-black focus:outline-hidden focus:before:bg-black"
+                        href="mailto:deverin@nextplayproject.com"
+                      >
+                        deverin@nextplayproject.com
+                      </a>
+                    </p>
                   </div>
-                </fieldset>
+                </div>
+
+                <div class="gap-4 hidden">
+                  <svg
+                    class="shrink-0 size-5 text-gray-500"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path
+                      d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"
+                    />
+                  </svg>
+
+                  <div class="grow">
+                    <p class="text-sm text-gray-600">Call us</p>
+                    <p>
+                      <a
+                        class="relative inline-block font-medium text-black before:absolute before:bottom-0.5 before:start-0 before:-z-1 before:w-full before:h-1 before:bg-yellow-400 hover:before:bg-black focus:outline-hidden focus:before:bg-black"
+                        href="mailto:example@site.so"
+                      >
+                        +44 222 777-000
+                      </a>
+                    </p>
+                  </div>
+                </div>
               </div>
+              <!-- End Grid -->
             </div>
           </div>
+          <!-- End Col -->
         </div>
-
-        <button type="submit" :disabled="isSubmitting" class="action-btn">
-          Send
-        </button>
-      </form>
+      </div>
     </div>
+    <!-- End Contact -->
   </section>
 </template>
