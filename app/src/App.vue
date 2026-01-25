@@ -1,9 +1,11 @@
 <script setup lang="ts">
-import Footer from './components/TheFooter.vue';
-import Header from './components/TheHeader.vue';
+import { Analytics } from "@vercel/analytics/vue";
+import Footer from "./components/TheFooter.vue";
+import Header from "./components/TheHeader.vue";
 </script>
 
 <template>
+  <Analytics />
   <div class="flex flex-col min-h-screen">
     <Header />
     <main class="grow">
