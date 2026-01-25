@@ -1,18 +1,19 @@
-import { createApp } from 'vue';
-import { createRouter, createWebHistory } from 'vue-router';
-import App from './App.vue';
-import './style.css';
-import About from './views/About.vue';
-import Books from './views/Books.vue';
-import Branding from './views/Branding.vue';
-import Contact from './views/Contact.vue';
-import FAQ from './views/FAQ.vue';
-import Home from './views/Home.vue';
-import Schedule from './views/Schedule.vue';
-import Services from './views/Services.vue';
-import Shop from './views/Shop.vue';
-import Subscribe from './views/Subscribe.vue';
-import TheGamePlan from './views/TheGamePlan.vue';
+import { createApp } from "vue";
+import { createRouter, createWebHistory } from "vue-router";
+import App from "./App.vue";
+import "./style.css";
+import About from "./views/About.vue";
+import Books from "./views/Books.vue";
+import Branding from "./views/Branding.vue";
+import Contact from "./views/Contact.vue";
+import FAQ from "./views/FAQ.vue";
+import Home from "./views/Home.vue";
+import NotFound from "./views/NotFound.vue";
+import Schedule from "./views/Schedule.vue";
+import Services from "./views/Services.vue";
+import Shop from "./views/Shop.vue";
+import Subscribe from "./views/Subscribe.vue";
+import TheGamePlan from "./views/TheGamePlan.vue";
 
 const router = createRouter({
   history: createWebHistory(),
@@ -27,20 +28,20 @@ const router = createRouter({
     { path: "/game-plan", component: TheGamePlan },
     { path: "/branding", component: Branding },
     { path: "/schedule", component: Schedule },
-    { path: "/shop", component: Shop }
+    { path: "/shop", component: Shop },
+    { path: "/:pathMatch(.*)*", component: NotFound }
   ],
   scrollBehavior(to, from) {
-    if (to.path === from.path)
-      return {};
+    if (to.path === from.path) return {};
 
     return { top: 0, behavior: "smooth" };
   }
 });
 
 router.afterEach((to, from) => {
-  if(to.fullPath === "/schedule") {
-    const script = document.createElement('script');
-    script.src = 'https://assets.calendly.com/assets/external/widget.js';
+  if (to.fullPath === "/schedule") {
+    const script = document.createElement("script");
+    script.src = "https://assets.calendly.com/assets/external/widget.js";
     script.async = true;
     script.id = "calendy-script";
     document.body.appendChild(script);
@@ -50,7 +51,6 @@ router.afterEach((to, from) => {
   }
 });
 
-
-const app = createApp(App)
+const app = createApp(App);
 app.use(router);
-app.mount('#app');
+app.mount("#app");
