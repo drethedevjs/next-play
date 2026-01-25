@@ -17,7 +17,7 @@ const copyHexValue = (color: IColor) => {
 const toggleCopy = (color: IColor) => (color.copied = !color.copied);
 </script>
 <template>
-  <div class="np-container">
+  <div id="branding" class="np-container">
     <h1 class="page-h1">Branding</h1>
 
     <h2>Colors</h2>
