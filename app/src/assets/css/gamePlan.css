@@ -1,0 +1,25 @@
+#game-plan {
+  h2 {
+    @apply mb-5 font-semibold mt-16;
+  }
+
+  h3 {
+    @apply text-3xl mb-5 font-semibold mt-10;
+  }
+
+  ul {
+    @apply text-2xl ml-10 mb-6 list-disc;
+  }
+
+  li {
+    @apply mb-2;
+  }
+
+  p {
+    @apply text-2xl mb-6 leading-10;
+  }
+}
+
+.philosophy {
+  @apply border-r-2 border-l-2 border-l-secondary border-r-secondary pb-2 lg:w-1/2 mx-auto;
+}

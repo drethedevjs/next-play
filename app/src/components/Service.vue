@@ -1,9 +1,20 @@
 <script lang="ts" setup>
-import { Clock02Icon, ComputerIcon, Idea01Icon, MoneySavingJarIcon } from 'hugeicons-vue';
-import IServiceProps from '../interfaces/IServiceProps';
-const { highlightHeading, hasFormats, hasDurations, callToActionBtnTxt, ctaBtnLinkPath } = defineProps<IServiceProps>();
+import {
+  Clock02Icon,
+  ComputerIcon,
+  Idea01Icon,
+  MoneySavingJarIcon
+} from "hugeicons-vue";
+import IServiceProps from "../interfaces/IServiceProps";
+const {
+  highlightHeading,
+  hasFormats,
+  hasDurations,
+  callToActionBtnTxt,
+  ctaBtnLinkPath
+} = defineProps<IServiceProps>();
 </script>
-<template>
+<template id="service">
   <slot name="heading"></slot>
 
   <h4>What's Included</h4>
@@ -31,22 +42,12 @@ const { highlightHeading, hasFormats, hasDurations, callToActionBtnTxt, ctaBtnLi
     <MoneySavingJarIcon class="text-secondary" />
     <h4>Pricing</h4>
   </div>
-  <slot name="pricing">
-    Contact us for pricing.
-  </slot>
+  <slot name="pricing"> Contact us for pricing. </slot>
   <router-link :to="ctaBtnLinkPath" v-show="ctaBtnLinkPath">
     <button class="action-btn">{{ callToActionBtnTxt }}</button>
   </router-link>
 
-  <button class="disabled-btn action-btn" v-show="!ctaBtnLinkPath">Coming Soon</button>
+  <button class="disabled-btn action-btn" v-show="!ctaBtnLinkPath">
+    Coming Soon
+  </button>
 </template>
-
-<style scoped>
-h4 {
-  @apply text-2xl uppercase font-semibold mb-4;
-}
-
-button.disabled-btn {
-  @apply opacity-50 cursor-not-allowed;
-}
-</style>

@@ -1,0 +1,47 @@
+#services {
+  h1 {
+    @apply text-center sm:text-8xl text-5xl font-bold uppercase border-b-2 border-b-dark pb-3 mb-10;
+  }
+
+  h2 {
+    @apply text-3xl pb-4 font-semibold uppercase;
+  }
+
+  h3 {
+    @apply pb-10 text-xl text-secondary;
+  }
+
+  h4 {
+    @apply text-2xl uppercase font-semibold mb-4;
+  }
+
+  #header-message {
+    @apply w-3/4 mx-auto text-center sm:text-3xl text-xl;
+  }
+
+  ul {
+    @apply mb-5;
+  }
+
+  li {
+    @apply text-xl list-disc ml-10;
+  }
+
+  .service-btn {
+    @apply py-3 hover:bg-dark hover:text-white transition-colors grow text-2xl border-b-2 border-b-dark;
+  }
+
+  .btn-group {
+    @apply sm:mt-16 mt-10 xl:flex-row flex flex-col;
+  }
+
+  @media (max-width: 1280px) {
+    .service-btn-icon {
+      @apply hidden;
+    }
+  }
+}
+
+.page-container {
+  @apply container mx-auto;
+}

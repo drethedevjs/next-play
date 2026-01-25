@@ -2,7 +2,7 @@
 import faqs from "../data/faqs";
 </script>
 <template>
-  <div class="container mx-auto xl:px-52 px-10">
+  <div id="faq" class="container mx-auto xl:px-52 px-10">
     <h1>FAQ</h1>
     <section>
       <ul class="mb-5 border-b-2 pb-5">
@@ -32,29 +32,3 @@ import faqs from "../data/faqs";
     </section>
   </div>
 </template>
-
-<style scoped>
-h1 {
-  @apply text-center sm:text-8xl text-5xl font-bold uppercase border-b-2 border-b-dark pb-3 mb-10;
-}
-
-.qna {
-  @apply mb-8 border-b-4 pb-3 sm:text-3xl text-xl;
-}
-
-.question {
-  @apply font-bold text-secondary uppercase mb-3;
-}
-
-.question-list {
-  @apply text-2xl hover:text-secondary mb-3;
-}
-
-.answer {
-  @apply pb-3;
-}
-
-li.list-disc {
-  @apply md:ml-20 ml-10;
-}
-</style>

@@ -1,0 +1,21 @@
+#about {
+  h1 {
+    @apply sm:text-9xl text-7xl uppercase font-bold;
+  }
+
+  h1 > span {
+    @apply sm:text-5xl text-3xl;
+  }
+
+  h2 {
+    @apply text-5xl mb-5 font-semibold;
+  }
+
+  p {
+    @apply text-2xl mb-6;
+  }
+
+  ul {
+    @apply text-2xl ml-10 mb-6 list-disc;
+  }
+}

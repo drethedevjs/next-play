@@ -1,0 +1,53 @@
+#hero {
+  h1 {
+    @apply sm:text-9xl text-7xl uppercase font-bold;
+  }
+
+  .the-text {
+    @apply sm:text-5xl text-3xl;
+  }
+
+  .next-play-text {
+    @apply text-transparent bg-clip-text bg-linear-to-r from-primary to-secondary;
+  }
+
+  .action-side {
+    @apply p-10 lg:w-1/2 w-full text-dark text-right;
+  }
+
+  .image-side {
+    @apply xl:w-1/2 w-full hidden lg:block;
+  }
+
+  .mobile-image-pane {
+    @apply w-full border-2 visible lg:hidden;
+  }
+
+  .tag-line {
+    @apply text-3xl;
+  }
+
+  .mission-line {
+    @apply mt-5 text-xl;
+  }
+
+  .action-btns {
+    @apply flex flex-row mt-6 place-content-end;
+  }
+
+  .btn {
+    @apply sm:py-6 sm:px-9 py-3 px-3 border-2 rounded-md font-bold md:text-xl;
+  }
+
+  .book-speaker-btn {
+    @apply border-secondary bg-secondary text-white mr-5 hover:text-dark hover:bg-white transition-colors;
+  }
+
+  .subscribe-btn {
+    @apply border-primary hover:bg-primary transition-colors;
+  }
+
+  .hero-logo {
+    @apply xl:object-cover xl:h-full xl:scale-100 xl:mt-0 scale-150 mt-20 w-full hover:scale-105 xl:hover:rotate-1 xl:rotate-3 hover:rotate-45 rotate-90 transition-transform;
+  }
+}

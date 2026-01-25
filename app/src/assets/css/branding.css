@@ -1,0 +1,29 @@
+#branding {
+  img {
+    @apply border-2 rounded-xl hover:border-secondary;
+  }
+
+  h2 {
+    @apply text-5xl mb-5 font-bold mt-16;
+  }
+
+  h3 {
+    @apply text-3xl mb-5 font-semibold uppercase mt-5;
+  }
+
+  .color {
+    @apply text-xl font-semibold rounded-md mb-2 p-4 hover:ring-2 hover:ring-charcoal;
+  }
+
+  .primary-color {
+    @apply p-10 rounded-xl text-3xl hover:ring-2 hover:ring-charcoal;
+  }
+
+  .primary-copy {
+    @apply hover:scale-150 scale-125 active:text-white active:rotate-12;
+  }
+
+  .copy {
+    @apply hover:scale-110 active:text-white active:rotate-12;
+  }
+}

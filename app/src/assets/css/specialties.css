@@ -1,0 +1,17 @@
+#specialties {
+  h2 {
+    @apply text-4xl sm:text-5xl mb-3 font-bold;
+  }
+
+  p {
+    @apply text-slate-400;
+  }
+}
+
+.heading-intro {
+  @apply mx-auto text-center sm:w-2/3;
+}
+
+.spec-container {
+  @apply lg:py-36 py-24 sm:px-20 px-8;
+}

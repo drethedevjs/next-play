@@ -1,10 +1,10 @@
 <script lang="ts">
-import { Idea01Icon, UserCircleIcon } from 'hugeicons-vue';
-import { Ref, ref, watch } from 'vue';
-import { useRoute, useRouter } from 'vue-router';
-import Service from '../components/Service.vue';
-import serviceData from '../data/services';
-import IService from '../interfaces/IService';
+import { Idea01Icon, UserCircleIcon } from "hugeicons-vue";
+import { Ref, ref, watch } from "vue";
+import { useRoute, useRouter } from "vue-router";
+import Service from "../components/Service.vue";
+import serviceData from "../data/services";
+import IService from "../interfaces/IService";
 
 export default {
   components: {
@@ -12,15 +12,18 @@ export default {
     Idea01Icon
   },
   mounted() {
-    const searchParams = new URLSearchParams(this.$route.query as Record<string, string>);
+    const searchParams = new URLSearchParams(
+      this.$route.query as Record<string, string>
+    );
     if (searchParams.has("id")) {
       let id = searchParams.get("id");
-      this.selectedService = this.services.find(s => s.id === Number(id)) || this.defaultService;
+      this.selectedService =
+        this.services.find(s => s.id === Number(id)) || this.defaultService;
     }
   },
   setup() {
     const defaultService = {
-      id: 1,  // Unique numeric ID for this service
+      id: 1, // Unique numeric ID for this service
       name: "One-on-One Coaching",
       tagLine: "Personalized Support for Athletes, Parents, and Coaches",
       offerings: [
@@ -41,17 +44,20 @@ export default {
       pricing: "Starting at [Insert Price] per session",
       hugeIcon: UserCircleIcon,
       ctaBtnLinkPath: "/schedule"
-    }
+    };
     const router = useRouter();
     const route = useRoute();
     const services = ref<IService[]>(serviceData);
-    let selectedService: Ref<IService> = ref(services.value.find(s => s.id === 1) || defaultService);
+    let selectedService: Ref<IService> = ref(
+      services.value.find(s => s.id === 1) || defaultService
+    );
 
     watch(
       () => route.query.id,
-      (newId) => {
+      newId => {
         if (newId) {
-          selectedService.value = services.value.find(s => s.id === Number(newId)) || defaultService;
+          selectedService.value =
+            services.value.find(s => s.id === Number(newId)) || defaultService;
         }
       }
     );
@@ -61,12 +67,11 @@ export default {
       if (element) {
         selectedService.value = element;
         router.push(`/services?id=${selectedService.value.id}`);
-      }
-      else
-        selectedService.value = services.value[0];
-    }
+      } else selectedService.value = services.value[0];
+    };
 
-    const updateButtonServiceClass = (serviceId: number) => selectedService.value.id === serviceId ? "bg-secondary text-white" : "";
+    const updateButtonServiceClass = (serviceId: number) =>
+      selectedService.value.id === serviceId ? "bg-secondary text-white" : "";
 
     return {
       selectService,
@@ -74,31 +79,35 @@ export default {
       services,
       updateButtonServiceClass,
       defaultService
-    }
-  },
-}
+    };
+  }
+};
 </script>
 <template>
-  <div class="page-container">
+  <div id="services" class="page-container">
     <h1>Services</h1>
     <p id="header-message">
-      At the <span class="text-secondary">Next Play Project</span>, we provide tailored solutions to help athletes, 
-      parents, and coaches navigate the challenges of athletic identity. Whether 
-      you're looking for one-on-one guidance, group workshops, or online resources, 
-      our services are designed to support you every step of the way.
+      At the <span class="text-secondary">Next Play Project</span>, we provide
+      tailored solutions to help athletes, parents, and coaches navigate the
+      challenges of athletic identity. Whether you're looking for one-on-one
+      guidance, group workshops, or online resources, our services are designed
+      to support you every step of the way.
     </p>
     <div class="btn-group">
-        <button
-          class="service-btn"
-          :class="updateButtonServiceClass(service.id)"
-          v-for="service in services"
-          @click="() => selectService(service.id)"
-        >
+      <button
+        class="service-btn"
+        :class="updateButtonServiceClass(service.id)"
+        v-for="service in services"
+        @click="() => selectService(service.id)"
+      >
         <div class="flex gap-2 place-content-center">
-          <component :is="service.hugeIcon" class="service-btn-icon"></component>
+          <component
+            :is="service.hugeIcon"
+            class="service-btn-icon"
+          ></component>
           {{ service.name }}
         </div>
-        </button>
+      </button>
     </div>
     <div class="p-10 xl:mx-52">
       <Service
@@ -143,7 +152,10 @@ export default {
 
         <template #duration>
           <ul>
-            <li class="ml-5 text-xl" v-for="duration in selectedService.duration">
+            <li
+              class="ml-5 text-xl"
+              v-for="duration in selectedService.duration"
+            >
               {{ duration }}
             </li>
           </ul>
@@ -156,51 +168,3 @@ export default {
     </div>
   </div>
 </template>
-
-<style scoped>
-h1 {
-  @apply text-center sm:text-8xl text-5xl font-bold uppercase border-b-2 border-b-dark pb-3 mb-10;
-}
-
-h2 {
-  @apply text-3xl pb-4 font-semibold uppercase;
-}
-
-h3 {
-  @apply pb-10 text-xl text-secondary;
-}
-
-h4 {
-  @apply text-2xl uppercase font-semibold mb-4;
-}
-
-#header-message {
-  @apply w-3/4 mx-auto text-center sm:text-3xl text-xl;
-}
-
-ul {
-  @apply mb-5;
-}
-
-li {
-  @apply text-xl list-disc ml-10;
-}
-
-.page-container {
-  @apply container mx-auto;
-}
-
-.service-btn {
-  @apply py-3 hover:bg-dark hover:text-white transition-colors grow text-2xl border-b-2 border-b-dark;
-}
-
-.btn-group {
-  @apply sm:mt-16 mt-10 xl:flex-row flex flex-col;
-}
-
-@media (max-width: 1280px) {
-  .service-btn-icon {
-    @apply hidden;
-  }
-}
-</style>

@@ -3,7 +3,7 @@ const currentYear: number = new Date().getFullYear();
 </script>
 
 <template>
-  <footer role="contentinfo">
+  <footer role="contentinfo" class="bg-dark">
     <div>
       Copyright <span class="text-secondary">Next Play</span> 2024 -
       {{ currentYear }}
@@ -16,9 +16,3 @@ const currentYear: number = new Date().getFullYear();
     </div>
   </footer>
 </template>
-
-<style scope>
-footer {
-  @apply bg-dark h-32 text-white font-semibold place-content-center text-center;
-}
-</style>

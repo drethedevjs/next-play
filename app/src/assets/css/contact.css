@@ -1,0 +1,43 @@
+#contact {
+  textarea {
+    @apply ring-secondary ring-1 rounded-md w-full h-36 p-5 text-2xl;
+  }
+
+  .contact-container {
+    @apply container mx-auto xl:px-60 px-10 mt-10;
+  }
+
+  label,
+  legend {
+    @apply block sm:text-3xl text-xl text-dark font-semibold;
+  }
+
+  small {
+    @apply text-xl;
+  }
+
+  input:is([type="checkbox"]) {
+    @apply h-8 w-8 mr-5 align-middle;
+  }
+
+  input:not([type="checkbox"]),
+  select {
+    @apply h-24 pl-5 sm:text-4xl text-2xl block w-full rounded-md py-1.5 text-dark shadow-xs ring-1 ring-inset ring-secondary focus:ring-2 focus:ring-inset focus:ring-warning;
+  }
+
+  h1 {
+    @apply text-center sm:text-8xl text-5xl font-bold uppercase border-b-2 border-b-dark pb-3 mb-10;
+  }
+
+  .error-message {
+    @apply text-red-600 mt-1 inline-block;
+  }
+
+  .notification-container {
+    @apply fixed justify-center inset-x-0 bg-linear-to-r from-cream to-emerald-200 rounded-lg p-5 md:w-52 w-3/4 mx-auto border-2 border-dark md:ml-10;
+  }
+
+  .notification {
+    @apply text-xl text-dark animate-bounce;
+  }
+}
