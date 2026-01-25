@@ -9,7 +9,7 @@ const currentYear: number = new Date().getFullYear();
       {{ currentYear }}
     </div>
     <div class="mt-5 scale-75">
-      Powered By
+      Built and Powered By
       <span class="text-secondary hover:text-cream">
         <a href="https://honeystack.solutions" target="_blank">Honeystack</a>
       </span>
