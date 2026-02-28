@@ -1,4 +1,10 @@
-import { FileAttachmentIcon, LaptopIcon, Mic01Icon, UserCircleIcon, UserGroupIcon } from "hugeicons-vue";
+import {
+  FileAttachmentIcon,
+  LaptopIcon,
+  Mic01Icon,
+  UserCircleIcon,
+  UserGroupIcon
+} from "hugeicons-vue";
 import Navigation from "../classes/Navigation";
 import IService from "../interfaces/IService";
 
@@ -22,12 +28,12 @@ const services: IService[] = [
     duration: ["60-minute sessions"],
     formats: [],
     callToActionText: "Book a Free Discovery Call",
-    pricing: "$150 per session or $200 off for 8 weeks",
+    pricing: null,
     hugeIcon: UserCircleIcon,
     ctaBtnLinkPath: Navigation.SCHEDULE
   },
   {
-    id: 2,  // Unique numeric ID for this service
+    id: 2,
     name: "Group Workshops",
     tagLine: "Interactive Learning for Teams and Organizations",
     offerings: [
@@ -44,12 +50,12 @@ const services: IService[] = [
     duration: ["60 minutes", "Full-day options available (Prices may vary)"],
     formats: ["In-person workshops", "Virtual workshops"],
     callToActionText: "Inquire About Workshops",
-    pricing: "$2000/session for up to 20 participants.",
+    pricing: null,
     hugeIcon: UserGroupIcon,
     ctaBtnLinkPath: ""
   },
   {
-    id: 3,  // Unique numeric ID for this service
+    id: 3,
     name: "Online Courses",
     tagLine: "Flexible Learning at Your Pace",
     offerings: [
@@ -65,12 +71,12 @@ const services: IService[] = [
     duration: [],
     formats: ["Video lessons", "Downloadable materials", "Quizzes"],
     callToActionText: "Explore Courses",
-    pricing: "Basic (w/o workbook): $100/course. Plus (Course + Workbook): $110/course. Premium (Coaching Call): $250/course--Includes 1 follow-up call after each course in completed",
+    pricing: null,
     hugeIcon: LaptopIcon,
     ctaBtnLinkPath: ""
   },
   {
-    id: 4,  // Unique numeric ID for this service
+    id: 4,
     name: "Digital Resources",
     tagLine: "Practical Tools for Growth",
     offerings: [
@@ -83,12 +89,12 @@ const services: IService[] = [
     duration: [],
     formats: ["Workbooks", "eBooks", "Guides"],
     callToActionText: "Browse Resources",
-    pricing: "Ebooks & workbooks - $20/each. Bundling for up to 50% off.",
+    pricing: null,
     hugeIcon: FileAttachmentIcon,
     ctaBtnLinkPath: ""
   },
   {
-    id: 5,  // Unique numeric ID for this service
+    id: 5,
     name: "Speaking Engagements",
     tagLine: "Inspiring Talks to Educate and Motivate",
     offerings: [
@@ -102,13 +108,10 @@ const services: IService[] = [
     duration: ["30-90 minutes"],
     formats: ["In-person", "Virtual"],
     callToActionText: "Request a Speaking Engagement",
-    pricing: "Contact us for details",
+    pricing: null,
     hugeIcon: Mic01Icon,
     ctaBtnLinkPath: Navigation.SCHEDULE
-
   }
 ];
-
-
 
 export default services;

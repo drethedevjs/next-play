@@ -162,7 +162,9 @@ export default {
         </template>
 
         <template #pricing>
-          <p class="ml-5 text-xl">{{ selectedService.pricing }}</p>
+          <p class="ml-5 text-xl">
+            {{ selectedService.pricing ?? "Contact for details" }}
+          </p>
         </template>
       </Service>
     </div>
