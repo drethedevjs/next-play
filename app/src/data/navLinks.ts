@@ -25,7 +25,8 @@ const navLinks: INavLinks[] = [
       },
       {
         name: "Shop",
-        path: Navigation.SHOP,
+        path: "https://payhip.com/NextPlayProject",
+        // path: Navigation.SHOP,
         isActive: true
       }
     ]
@@ -45,24 +46,9 @@ const navLinks: INavLinks[] = [
         name: "FAQ",
         path: Navigation.FAQ,
         isActive: true
-      },
+      }
     ]
-  },
-  {
-    name: "G.A.M.E. Plan",
-    path: Navigation.GAME,
-    isActive: false
-  },
-  {
-    name: "FAQ",
-    path: Navigation.FAQ,
-    isActive: false
-  },
-  {
-    name: "Shop",
-    path: Navigation.SHOP,
-    isActive: false
   }
-]
+];
 
 export default navLinks;

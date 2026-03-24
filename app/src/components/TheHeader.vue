@@ -8,67 +8,118 @@ import {
 import { ref } from "vue";
 import { useRouter } from "vue-router";
 import navLinks from "../data/navLinks";
-import INavLinks from "../interfaces/INavLinks";
+import type INavLinks from "../interfaces/INavLinks";
 
-const headerLinks = ref<INavLinks[]>(navLinks);
+const headerLinks = ref<INavLinks[]>(
+  navLinks.map(link => ({
+    ...link,
+    showSubmenu: link.showSubmenu ?? false,
+    subMenu: link.subMenu?.map(subLink => ({ ...subLink }))
+  }))
+);
+
 const isMenuOpen = ref(false);
-
 const router = useRouter();
+
+function closeAllSubmenus() {
+  headerLinks.value.forEach(link => {
+    link.showSubmenu = false;
+  });
+}
+
 function navigate(to: string) {
-  toggleMenu();
-  // close all open sub menus
-  headerLinks.value.map(l => (l.showSubmenu = false));
+  isMenuOpen.value = false;
+  closeAllSubmenus();
   router.push(to);
 }
 
 function toggleMenu() {
   isMenuOpen.value = !isMenuOpen.value;
+
+  if (!isMenuOpen.value) {
+    closeAllSubmenus();
+  }
 }
 
-const toggleSubMenu = (link: INavLinks, show: boolean) => {
-  link.showSubmenu = show;
-};
+function toggleSubMenu(link: INavLinks, show?: boolean) {
+  if (typeof show === "boolean") {
+    link.showSubmenu = show;
+    return;
+  }
+
+  link.showSubmenu = !link.showSubmenu;
+}
+
+function isExternalLink(path: string) {
+  return path.startsWith("http");
+}
+
+function handleMobileParentClick(link: INavLinks) {
+  if (link.subMenu?.length) {
+    toggleSubMenu(link);
+    return;
+  }
+
+  navigate(link.path);
+}
+
+function handleExternalLinkClick() {
+  isMenuOpen.value = false;
+  closeAllSubmenus();
+}
 </script>
 
 <template>
   <nav>
     <div class="nav-container">
       <img src="/logo-blk-main.png" class="logo" alt="Next Play logo" />
+
       <ul class="flex flex-row">
-        <template v-for="link in headerLinks">
+        <template v-for="link in headerLinks" :key="link.path">
           <li
             v-if="link.isActive"
-            @mouseover="link.showSubmenu = true"
-            @mouseleave="link.showSubmenu = false"
+            class="relative"
+            @mouseover="toggleSubMenu(link, true)"
+            @mouseleave="toggleSubMenu(link, false)"
           >
             <router-link :to="link.path">
               <span class="top-link">{{ link.name }}</span>
             </router-link>
-            <div v-if="link.subMenu && link.subMenu.length > 0">
-              <ul
-                v-show="link.showSubmenu"
-                class="sublink-container bg-primary"
-                @mouseover="link.showSubmenu = true"
-                @mouseleave="link.showSubmenu = false"
+
+            <ul
+              v-if="link.subMenu?.length"
+              v-show="link.showSubmenu"
+              class="sublink-container bg-primary"
+            >
+              <li
+                v-for="subLink in link.subMenu"
+                :key="subLink.path"
+                v-show="subLink.isActive"
+                class="sublink"
               >
-                <li
-                  v-for="subLink in link.subMenu"
-                  v-show="link.showSubmenu && subLink.isActive"
-                  :key="link.name"
-                  class="sublink"
+                <a
+                  v-if="isExternalLink(subLink.path)"
+                  :href="subLink.path"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  @click="handleExternalLinkClick"
                 >
-                  <router-link :to="subLink.path">
-                    {{ subLink.name }}
-                  </router-link>
-                </li>
-              </ul>
-            </div>
+                  {{ subLink.name }}
+                </a>
+
+                <router-link v-else :to="subLink.path">
+                  {{ subLink.name }}
+                </router-link>
+              </li>
+            </ul>
           </li>
         </template>
       </ul>
     </div>
+
     <div class="mobile-nav-container">
       <HamburgerMenu :size="70" id="hamburger-menu" @click="toggleMenu" />
+
       <div class="w-full">
         <router-link to="/">
           <img
@@ -78,6 +129,7 @@ const toggleSubMenu = (link: INavLinks, show: boolean) => {
           />
         </router-link>
       </div>
+
       <div id="mobile-nav" v-show="isMenuOpen">
         <div class="flex flex-row mt-5">
           <img
@@ -90,36 +142,51 @@ const toggleSubMenu = (link: INavLinks, show: boolean) => {
             @click="toggleMenu"
           />
         </div>
+
         <ul>
-          <template v-for="link in headerLinks">
+          <template v-for="link in headerLinks" :key="`${link.path}-mobile`">
             <li v-if="link.isActive" class="mobile-link">
               <div class="flex justify-between px-5 items-center">
                 <span
-                  @click="navigate(link.path)"
+                  @click="handleMobileParentClick(link)"
                   class="active:text-secondary"
-                  >{{ link.name }}</span
                 >
-                <PlusSignIcon
-                  v-show="link.subMenu?.length && !link.showSubmenu"
-                  @click.prevent="toggleSubMenu(link, true)"
-                />
-                <MinusSignIcon
-                  v-show="link.subMenu?.length && link.showSubmenu"
-                  @click.prevent="toggleSubMenu(link, false)"
-                />
+                  {{ link.name }}
+                </span>
+
+                <button
+                  v-if="link.subMenu?.length"
+                  type="button"
+                  @click.stop="toggleSubMenu(link)"
+                >
+                  <PlusSignIcon v-show="!link.showSubmenu" />
+                  <MinusSignIcon v-show="link.showSubmenu" />
+                </button>
               </div>
+
+              <ul v-show="link.showSubmenu" class="mobile-sublink-container">
+                <li
+                  v-for="subLink in link.subMenu"
+                  :key="`${subLink.path}-mobile`"
+                  v-show="subLink.isActive"
+                  class="mobile-sublink"
+                >
+                  <a
+                    v-if="isExternalLink(subLink.path)"
+                    :href="subLink.path"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    @click="handleExternalLinkClick"
+                  >
+                    {{ subLink.name }}
+                  </a>
+
+                  <span v-else @click="navigate(subLink.path)">
+                    {{ subLink.name }}
+                  </span>
+                </li>
+              </ul>
             </li>
-            <ul v-show="link.showSubmenu" class="mobile-sublink-container">
-              <li
-                :key="link.name"
-                v-for="subLink in link.subMenu"
-                v-show="link.showSubmenu && subLink.isActive"
-                class="mobile-sublink"
-                @click="navigate(subLink.path)"
-              >
-                {{ subLink.name }}
-              </li>
-            </ul>
           </template>
         </ul>
       </div>
